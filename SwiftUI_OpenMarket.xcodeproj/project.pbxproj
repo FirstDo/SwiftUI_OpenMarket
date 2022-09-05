@@ -39,6 +39,7 @@
 		942458D528C671F500B235A8 /* ProductMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458D428C671F500B235A8 /* ProductMainViewModel.swift */; };
 		942458DA28C68E3E00B235A8 /* PromotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458D928C68E3E00B235A8 /* PromotionView.swift */; };
 		942458DC28C68E4800B235A8 /* PromotionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458DB28C68E4800B235A8 /* PromotionViewModel.swift */; };
+		942458DF28C68F3600B235A8 /* PageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458DE28C68F3600B235A8 /* PageControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		942458D428C671F500B235A8 /* ProductMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductMainViewModel.swift; sourceTree = "<group>"; };
 		942458D928C68E3E00B235A8 /* PromotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionView.swift; sourceTree = "<group>"; };
 		942458DB28C68E4800B235A8 /* PromotionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromotionViewModel.swift; sourceTree = "<group>"; };
+		942458DE28C68F3600B235A8 /* PageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 			children = (
 				942458D928C68E3E00B235A8 /* PromotionView.swift */,
 				942458DB28C68E4800B235A8 /* PromotionViewModel.swift */,
+				942458DD28C68F1200B235A8 /* Components */,
 			);
 			path = Promotion;
 			sourceTree = "<group>";
@@ -326,6 +329,14 @@
 			isa = PBXGroup;
 			children = (
 				942458C328C65C5900B235A8 /* Product */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		942458DD28C68F1200B235A8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				942458DE28C68F3600B235A8 /* PageControlView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -447,6 +458,7 @@
 				9424586D28C5BB9300B235A8 /* SwiftUI_OpenMarketApp.swift in Sources */,
 				942458D328C66F0A00B235A8 /* DIContainer.swift in Sources */,
 				942458C928C65E6500B235A8 /* ImageCacheManager.swift in Sources */,
+				942458DF28C68F3600B235A8 /* PageControlView.swift in Sources */,
 				9424589928C5CA2A00B235A8 /* NetworkError.swift in Sources */,
 				9424588128C5BFD800B235A8 /* ProductImageDTO.swift in Sources */,
 				9424589B28C5CAB600B235A8 /* NetworkService.swift in Sources */,
