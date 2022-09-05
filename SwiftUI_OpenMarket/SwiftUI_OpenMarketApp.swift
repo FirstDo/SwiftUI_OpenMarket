@@ -11,7 +11,9 @@ import SwiftUI
 struct SwiftUI_OpenMarketApp: App {
   var body: some Scene {
     WindowGroup {
-      ProductMainView()
+      NavigationView {
+        ProductMainView()
+      }
     }
   }
 }
