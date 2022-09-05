@@ -6,6 +6,6 @@
 //
 
 struct DIContainer {
-  let networkService: NetworkService
+  let productRepository: ProductRepository
   let imageDownloder: ImageDownloader
 }

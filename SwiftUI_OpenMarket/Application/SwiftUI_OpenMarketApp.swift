@@ -10,9 +10,9 @@ import SwiftUI
 @main
 struct SwiftUI_OpenMarketApp: App {
   
-  private let viewFactor = ViewFactory(
+  private let viewFactory = ViewFactory(
     container: DIContainer(
-      networkService: DefaultNetworkService(),
+      productRepository: DefaultProductRepository(networkService: DefaultNetworkService()),
       imageDownloder: DefaultImageDownloader(cacheManager: ImageCacheManager())
     )
   )
@@ -20,9 +20,9 @@ struct SwiftUI_OpenMarketApp: App {
   var body: some Scene {
     WindowGroup {
       NavigationView {
-        ProductMainView()
+        viewFactory.productMainView()
       }
-      .environmentObject(viewFactor)
+      .environmentObject(viewFactory)
     }
   }
 }
