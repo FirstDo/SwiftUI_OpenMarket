@@ -22,6 +22,7 @@
 		9424589728C5CA1000B235A8 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424589628C5CA1000B235A8 /* HTTPMethod.swift */; };
 		9424589928C5CA2A00B235A8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424589828C5CA2A00B235A8 /* NetworkError.swift */; };
 		9424589B28C5CAB600B235A8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424589A28C5CAB600B235A8 /* NetworkService.swift */; };
+		9424589E28C5D10100B235A8 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424589D28C5D10100B235A8 /* APIs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		9424589628C5CA1000B235A8 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		9424589828C5CA2A00B235A8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		9424589A28C5CAB600B235A8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		9424589D28C5D10100B235A8 /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,8 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				9424589A28C5CAB600B235A8 /* NetworkService.swift */,
+				9424589C28C5D0EE00B235A8 /* API */,
 				9424589528C5CA0300B235A8 /* Components */,
-				9424589328C5C4BD00B235A8 /* EndPoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -154,6 +156,15 @@
 				9424589828C5CA2A00B235A8 /* NetworkError.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		9424589C28C5D0EE00B235A8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				9424589328C5C4BD00B235A8 /* EndPoint.swift */,
+				9424589D28C5D10100B235A8 /* APIs.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +245,7 @@
 				9424588528C5C02300B235A8 /* VenderDTO.swift in Sources */,
 				9424586F28C5BB9300B235A8 /* ProductMainView.swift in Sources */,
 				9424588328C5BFFD00B235A8 /* ProductResponseDTO.swift in Sources */,
+				9424589E28C5D10100B235A8 /* APIs.swift in Sources */,
 				9424586D28C5BB9300B235A8 /* SwiftUI_OpenMarketApp.swift in Sources */,
 				9424589928C5CA2A00B235A8 /* NetworkError.swift in Sources */,
 				9424588128C5BFD800B235A8 /* ProductImageDTO.swift in Sources */,
