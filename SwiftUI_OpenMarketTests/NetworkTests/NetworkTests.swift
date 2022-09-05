@@ -46,7 +46,7 @@ class NetworkTests: XCTestCase {
         }
       )
       .store(in: &cancellables)
-
+    
     // then
     wait(for: [expectation], timeout: 10.0)
     XCTAssertEqual(expectedValue, value)
@@ -85,7 +85,7 @@ class NetworkTests: XCTestCase {
 private extension NetworkTests {
   private func makeMockURLSession() -> URLSession {
     let configuration = URLSessionConfiguration.default
-    configuration.protocolClasses = [MockURLProtocl.self]
+    configuration.protocolClasses = [MockURLProtocol.self]
     
     return URLSession(configuration: configuration)
   }
@@ -93,7 +93,7 @@ private extension NetworkTests {
   private func makeMockProductsData() {
     let data = try! JSONEncoder().encode(ProductResponseDTO.dummy)
     
-    MockURLProtocl.requestHandler = { request in
+    MockURLProtocol.requestHandler = { request in
       return (HTTPURLResponse(), data)
     }
   }
@@ -101,52 +101,8 @@ private extension NetworkTests {
   private func makeMockProductData() {
     let data = try! JSONEncoder().encode(ProductDTO.dummy)
     
-    MockURLProtocl.requestHandler = { request in
+    MockURLProtocol.requestHandler = { request in
       return (HTTPURLResponse(), data)
     }
   }
-}
-
-private extension ProductResponseDTO {
-  static let dummy = ProductResponseDTO(
-    pageNumber: 2,
-    itemsPerPage: 10,
-    totalCount: 325,
-    offset: 10,
-    limit: 20,
-    lastPage: 33,
-    hasNext: true,
-    hasPrev: true,
-    products: [
-      ProductDTO.dummy,
-      ProductDTO.dummy,
-      ProductDTO.dummy,
-      ProductDTO.dummy,
-      ProductDTO.dummy,
-      ProductDTO.dummy,
-      ProductDTO.dummy,
-      ProductDTO.dummy,
-      ProductDTO.dummy,
-      ProductDTO.dummy,
-    ]
-  )
-}
-
-private extension ProductDTO {
-  static let dummy = ProductDTO(
-    id: 522,
-    vendorId: 6,
-    name: "아이폰13",
-    description: "비싸",
-    thumbnail: "https://s3.ap-northeast-2.amazonaws.com/media.yagom-academy.kr/training-resources/6/thumb/f9aa6e0d787711ecabfa3f1efeb4842b.jpg",
-    currency: "KRW",
-    price: 13000,
-    bargainPrice: 12000,
-    discountedPrice: 1000,
-    stock: 10,
-    images: nil,
-    vendor: nil,
-    createdAt: "2022-01-18T00:00:00.00",
-    issuedAt: "2022-01-18T00:00:00.00"
-  )
 }

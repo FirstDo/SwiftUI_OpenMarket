@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 
-class MockURLProtocl: URLProtocol {
+class MockURLProtocol: URLProtocol {
   static var requestHandler: ((URLRequest) throws -> (HTTPURLResponse, Data))?
   
   override class func canInit(with request: URLRequest) -> Bool {
@@ -20,7 +20,7 @@ class MockURLProtocl: URLProtocol {
   }
   
   override func startLoading() {
-    guard let handler = MockURLProtocl.requestHandler else {
+    guard let handler = MockURLProtocol.requestHandler else {
       XCTFail("handler is nil")
       return
     }

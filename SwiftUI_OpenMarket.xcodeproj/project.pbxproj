@@ -25,6 +25,7 @@
 		9424589E28C5D10100B235A8 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424589D28C5D10100B235A8 /* APIs.swift */; };
 		942458A628C5D23800B235A8 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458A528C5D23800B235A8 /* NetworkTests.swift */; };
 		942458AE28C5D32300B235A8 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458AD28C5D32300B235A8 /* MockURLProtocol.swift */; };
+		942458B128C5F7CA00B235A8 /* ProductRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458B028C5F7C900B235A8 /* ProductRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		942458A328C5D23800B235A8 /* SwiftUI_OpenMarketTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUI_OpenMarketTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		942458A528C5D23800B235A8 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		942458AD28C5D32300B235A8 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		942458B028C5F7C900B235A8 /* ProductRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 		9424587C28C5BE6F00B235A8 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				942458AF28C5F7AC00B235A8 /* Repository */,
 				9424587D28C5BF4C00B235A8 /* DTO */,
 			);
 			path = Data;
@@ -206,6 +209,14 @@
 				942458AD28C5D32300B235A8 /* MockURLProtocol.swift */,
 			);
 			path = NetworkTests;
+			sourceTree = "<group>";
+		};
+		942458AF28C5F7AC00B235A8 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				942458B028C5F7C900B235A8 /* ProductRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +333,7 @@
 				9424588128C5BFD800B235A8 /* ProductImageDTO.swift in Sources */,
 				9424589B28C5CAB600B235A8 /* NetworkService.swift in Sources */,
 				9424588928C5C16600B235A8 /* Product.swift in Sources */,
+				942458B128C5F7CA00B235A8 /* ProductRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
