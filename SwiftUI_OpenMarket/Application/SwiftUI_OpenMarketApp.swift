@@ -9,11 +9,20 @@ import SwiftUI
 
 @main
 struct SwiftUI_OpenMarketApp: App {
+  
+  private let viewFactor = ViewFactory(
+    container: DIContainer(
+      networkService: DefaultNetworkService(),
+      imageDownloder: DefaultImageDownloader(cacheManager: ImageCacheManager())
+    )
+  )
+  
   var body: some Scene {
     WindowGroup {
       NavigationView {
         ProductMainView()
       }
+      .environmentObject(viewFactor)
     }
   }
 }
