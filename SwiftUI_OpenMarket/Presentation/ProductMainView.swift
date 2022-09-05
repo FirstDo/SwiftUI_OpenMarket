@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProductMainView: View {
+  @EnvironmentObject var viewFactory: ViewFactory
+  
   var body: some View {
     Text("Hello, world!")
       .padding()
@@ -17,5 +19,6 @@ struct ProductMainView: View {
 struct ProductMainView_Previews: PreviewProvider {
   static var previews: some View {
     ProductMainView()
+      .environmentObject(ViewFactory.preview)
   }
 }

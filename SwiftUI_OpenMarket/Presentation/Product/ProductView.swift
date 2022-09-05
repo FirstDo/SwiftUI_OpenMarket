@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductView: View {
-  
+  @EnvironmentObject var viewFactor: ViewFactory
   @ObservedObject var viewModel: ProductViewModel
   
   var body: some View {
@@ -17,7 +17,7 @@ struct ProductView: View {
         .resizable()
         .aspectRatio(1, contentMode: .fit)
         .cornerRadius(20)
-        
+      
       informationView
     }
     .padding()
@@ -63,6 +63,7 @@ struct ProductView_Previews: PreviewProvider {
       product: Product.preview,
       imageDownloader: DefaultImageDownloader(cacheManager: ImageCacheManager())
     ))
-      .previewLayout(.fixed(width: 400, height: 130))
+    .environmentObject(ViewFactory.preview)
+    .previewLayout(.fixed(width: 400, height: 130))
   }
 }
