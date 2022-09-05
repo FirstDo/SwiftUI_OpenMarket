@@ -14,6 +14,16 @@ final class ViewFactory: ObservableObject {
     self.container = container
   }
   
+  func promotionView() -> PromotionView {
+    let viewModel = PromotionViewModel(productRepository: container.productRepository)
+    return PromotionView(viewModel: viewModel)
+  }
+  
+  func productGridView(with product: Product) -> ProductGridView {
+    let viewModel = ProductViewModel(product: product, imageDownloader: container.imageDownloder)
+    return ProductGridView(viewModel: viewModel)
+  }
+  
   func productView(with product: Product) -> ProductView {
     let viewModel = ProductViewModel(product: product, imageDownloader: container.imageDownloder)
     return ProductView(viewModel: viewModel)

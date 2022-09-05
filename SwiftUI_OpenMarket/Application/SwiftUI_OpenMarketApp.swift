@@ -20,7 +20,7 @@ struct SwiftUI_OpenMarketApp: App {
   var body: some Scene {
     WindowGroup {
       NavigationView {
-        viewFactory.productMainView()
+        viewFactory.promotionView()
       }
       .environmentObject(viewFactory)
     }
