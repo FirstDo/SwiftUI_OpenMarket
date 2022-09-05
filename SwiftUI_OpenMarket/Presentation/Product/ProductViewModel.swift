@@ -22,7 +22,10 @@ final class ProductViewModel: ObservableObject {
   
   private func downloadImage(imageURL url: String) async {
     guard let image = try? await imageDownloader.download(imageURL: url) else { return }
-    self.image = image
+    
+    await MainActor.run {
+      self.image = image
+    }
   }
   
   private var currency: String {
