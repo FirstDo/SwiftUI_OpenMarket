@@ -11,6 +11,10 @@
 		9424586F28C5BB9300B235A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424586E28C5BB9300B235A8 /* ContentView.swift */; };
 		9424587128C5BB9600B235A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9424587028C5BB9600B235A8 /* Assets.xcassets */; };
 		9424587428C5BB9600B235A8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9424587328C5BB9600B235A8 /* Preview Assets.xcassets */; };
+		9424587F28C5BF8800B235A8 /* ProductDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424587E28C5BF8800B235A8 /* ProductDTO.swift */; };
+		9424588128C5BFD800B235A8 /* ProductImageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424588028C5BFD800B235A8 /* ProductImageDTO.swift */; };
+		9424588328C5BFFD00B235A8 /* ProductResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424588228C5BFFD00B235A8 /* ProductResponseDTO.swift */; };
+		9424588528C5C02300B235A8 /* VenderDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424588428C5C02300B235A8 /* VenderDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,10 @@
 		9424586E28C5BB9300B235A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9424587028C5BB9600B235A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9424587328C5BB9600B235A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9424587E28C5BF8800B235A8 /* ProductDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDTO.swift; sourceTree = "<group>"; };
+		9424588028C5BFD800B235A8 /* ProductImageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageDTO.swift; sourceTree = "<group>"; };
+		9424588228C5BFFD00B235A8 /* ProductResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductResponseDTO.swift; sourceTree = "<group>"; };
+		9424588428C5C02300B235A8 /* VenderDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenderDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +59,9 @@
 		9424586B28C5BB9300B235A8 /* SwiftUI_OpenMarket */ = {
 			isa = PBXGroup;
 			children = (
+				9424587C28C5BE6F00B235A8 /* Data */,
+				9424587A28C5BE6100B235A8 /* Domain */,
+				9424587B28C5BE6900B235A8 /* Presentation */,
 				9424586C28C5BB9300B235A8 /* SwiftUI_OpenMarketApp.swift */,
 				9424586E28C5BB9300B235A8 /* ContentView.swift */,
 				9424587028C5BB9600B235A8 /* Assets.xcassets */,
@@ -65,6 +76,39 @@
 				9424587328C5BB9600B235A8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9424587A28C5BE6100B235A8 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		9424587B28C5BE6900B235A8 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		9424587C28C5BE6F00B235A8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				9424587D28C5BF4C00B235A8 /* DTO */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		9424587D28C5BF4C00B235A8 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				9424587E28C5BF8800B235A8 /* ProductDTO.swift */,
+				9424588028C5BFD800B235A8 /* ProductImageDTO.swift */,
+				9424588228C5BFFD00B235A8 /* ProductResponseDTO.swift */,
+				9424588428C5C02300B235A8 /* VenderDTO.swift */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +181,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9424587F28C5BF8800B235A8 /* ProductDTO.swift in Sources */,
+				9424588528C5C02300B235A8 /* VenderDTO.swift in Sources */,
 				9424586F28C5BB9300B235A8 /* ContentView.swift in Sources */,
+				9424588328C5BFFD00B235A8 /* ProductResponseDTO.swift in Sources */,
 				9424586D28C5BB9300B235A8 /* SwiftUI_OpenMarketApp.swift in Sources */,
+				9424588128C5BFD800B235A8 /* ProductImageDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
