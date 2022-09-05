@@ -23,3 +23,22 @@ struct Product {
   let createdAt: String
   let issuedAt: String
 }
+
+extension Product {
+  static let preview = Product(
+    id: 522,
+    vendorId: 6,
+    name: "아이폰13",
+    description: "비싸",
+    thumbnail: "https://s3.ap-northeast-2.amazonaws.com/media.yagom-academy.kr/training-resources/6/thumb/f9aa6e0d787711ecabfa3f1efeb4842b.jpg",
+    currency: "KRW",
+    price: 13000,
+    bargainPrice: 12000,
+    discountedPrice: 1000,
+    stock: 10,
+    images: nil,
+    vendor: nil,
+    createdAt: "2022-01-18T00:00:00.00",
+    issuedAt: "2022-01-18T00:00:00.00"
+  )
+}
