@@ -2,7 +2,7 @@
 //  ViewFactory.swift
 //  SwiftUI_OpenMarket
 //
-//  Created by 김도연 on 2022/09/06.
+//  Created by dudu on 2022/09/06.
 //
 
 import SwiftUI
@@ -18,12 +18,17 @@ final class ViewFactory: ObservableObject {
     let viewModel = ProductViewModel(product: product, imageDownloader: container.imageDownloder)
     return ProductView(viewModel: viewModel)
   }
+  
+  func productMainView() -> ProductMainView {
+    let viewModel = ProductMainViewModel(productRepository: container.productRepository)
+    return ProductMainView(viewModel: viewModel)
+  }
 }
 
 extension ViewFactory {
   static let preview = ViewFactory(
     container: DIContainer(
-      networkService: DefaultNetworkService(),
+      productRepository: DefaultProductRepository(networkService: DefaultNetworkService()),
       imageDownloder: DefaultImageDownloader(cacheManager: ImageCacheManager())
     )
   )

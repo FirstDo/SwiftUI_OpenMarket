@@ -36,6 +36,7 @@
 		942458C928C65E6500B235A8 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458C828C65E6500B235A8 /* ImageCacheManager.swift */; };
 		942458D128C66DCD00B235A8 /* ViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458D028C66DCD00B235A8 /* ViewFactory.swift */; };
 		942458D328C66F0A00B235A8 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458D228C66F0A00B235A8 /* DIContainer.swift */; };
+		942458D528C671F500B235A8 /* ProductMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458D428C671F500B235A8 /* ProductMainViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,7 @@
 		942458C828C65E6500B235A8 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		942458D028C66DCD00B235A8 /* ViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactory.swift; sourceTree = "<group>"; };
 		942458D228C66F0A00B235A8 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		942458D428C671F500B235A8 /* ProductMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductMainViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				9424586E28C5BB9300B235A8 /* ProductMainView.swift */,
+				942458D428C671F500B235A8 /* ProductMainViewModel.swift */,
 				942458C328C65C5900B235A8 /* Product */,
 			);
 			path = Presentation;
@@ -401,6 +404,7 @@
 				9424587F28C5BF8800B235A8 /* ProductDTO.swift in Sources */,
 				9424589428C5C4BD00B235A8 /* EndPoint.swift in Sources */,
 				9424589728C5CA1000B235A8 /* HTTPMethod.swift in Sources */,
+				942458D528C671F500B235A8 /* ProductMainViewModel.swift in Sources */,
 				9424588B28C5C18A00B235A8 /* ProductImage.swift in Sources */,
 				942458C728C65E4D00B235A8 /* ImageDownloader.swift in Sources */,
 				9424588528C5C02300B235A8 /* VenderDTO.swift in Sources */,

@@ -59,10 +59,7 @@ extension ProductView {
 
 struct ProductView_Previews: PreviewProvider {
   static var previews: some View {
-    ProductView(viewModel: ProductViewModel(
-      product: Product.preview,
-      imageDownloader: DefaultImageDownloader(cacheManager: ImageCacheManager())
-    ))
+    ViewFactory.preview.productView(with: Product.preview)
     .environmentObject(ViewFactory.preview)
     .previewLayout(.fixed(width: 400, height: 130))
   }
