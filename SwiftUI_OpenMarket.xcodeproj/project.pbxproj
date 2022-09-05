@@ -21,6 +21,7 @@
 		9424589428C5C4BD00B235A8 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424589328C5C4BD00B235A8 /* EndPoint.swift */; };
 		9424589728C5CA1000B235A8 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424589628C5CA1000B235A8 /* HTTPMethod.swift */; };
 		9424589928C5CA2A00B235A8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424589828C5CA2A00B235A8 /* NetworkError.swift */; };
+		9424589B28C5CAB600B235A8 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9424589A28C5CAB600B235A8 /* NetworkService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		9424589328C5C4BD00B235A8 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		9424589628C5CA1000B235A8 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		9424589828C5CA2A00B235A8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		9424589A28C5CAB600B235A8 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 		9424588F28C5C3E700B235A8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				9424589A28C5CAB600B235A8 /* NetworkService.swift */,
 				9424589528C5CA0300B235A8 /* Components */,
 				9424589328C5C4BD00B235A8 /* EndPoint.swift */,
 			);
@@ -234,6 +237,7 @@
 				9424586D28C5BB9300B235A8 /* SwiftUI_OpenMarketApp.swift in Sources */,
 				9424589928C5CA2A00B235A8 /* NetworkError.swift in Sources */,
 				9424588128C5BFD800B235A8 /* ProductImageDTO.swift in Sources */,
+				9424589B28C5CAB600B235A8 /* NetworkService.swift in Sources */,
 				9424588928C5C16600B235A8 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
