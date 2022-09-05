@@ -37,7 +37,7 @@ final class DefaultProductRepository: ProductRepository {
   }
   
   func requestProducts(page: Int, itemPerPage: Int) -> AnyPublisher<[Product], NetworkError> {
-    let endPoint = RequestProductList(queryParameters: ["page": "\(page)", "itmes_per_page": "\(itemPerPage)"])
+    let endPoint = RequestProductList(queryParameters: ["page_no": "\(page)", "itmes_per_page": "\(itemPerPage)"])
     
     return networkService.request(endPoint: endPoint)
       .decode(type: ProductResponseDTO.self, decoder: JSONDecoder())
