@@ -5,13 +5,24 @@
 //  Created by dudu on 2022/09/06.
 //
 
-import Foundation
+import UIKit
 
 final class ProductViewModel: ObservableObject {
   private let product: Product
+  private let imageDownloader: ImageDownloader
   
-  init(product: Product) {
+  init(product: Product, imageDownloader: ImageDownloader) {
     self.product = product
+    self.imageDownloader = imageDownloader
+    
+    Task {
+      await downloadImage(imageURL: product.thumbnail)
+    }
+  }
+  
+  private func downloadImage(imageURL url: String) async {
+    guard let image = try? await imageDownloader.download(imageURL: url) else { return }
+    self.image = image
   }
   
   private var currency: String {
@@ -32,9 +43,7 @@ final class ProductViewModel: ObservableObject {
     return product.name
   }
   
-  var imageURL: String {
-    return product.thumbnail
-  }
+  @Published var image: UIImage = UIImage(systemName: "swift")!
   
   var price: String {
     return formattedPrice(number: product.price) + currency

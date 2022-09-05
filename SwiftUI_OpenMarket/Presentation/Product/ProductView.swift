@@ -13,7 +13,7 @@ struct ProductView: View {
   
   var body: some View {
     HStack(spacing: 16) {
-      Image(systemName: "swift")
+      Image(uiImage: viewModel.image)
         .resizable()
         .aspectRatio(1, contentMode: .fit)
         .cornerRadius(20)
@@ -59,7 +59,10 @@ extension ProductView {
 
 struct ProductView_Previews: PreviewProvider {
   static var previews: some View {
-    ProductView(viewModel: ProductViewModel(product: Product.preview))
+    ProductView(viewModel: ProductViewModel(
+      product: Product.preview,
+      imageDownloader: DefaultImageDownloader(cacheManager: ImageCacheManager())
+    ))
       .previewLayout(.fixed(width: 400, height: 130))
   }
 }
