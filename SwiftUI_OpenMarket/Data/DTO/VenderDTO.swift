@@ -19,3 +19,9 @@ struct VendorDTO: Codable {
     case issuedAt = "issued_at"
   }
 }
+
+extension VendorDTO {
+  func toEntity() -> Vendor {
+    return Vendor(id: id, name: name, createdAt: createdAt, issuedAt: issuedAt)
+  }
+}

@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct SwiftUI_OpenMarketApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ProductMainView()
-        }
+  var body: some Scene {
+    WindowGroup {
+      ProductMainView()
     }
+  }
 }
