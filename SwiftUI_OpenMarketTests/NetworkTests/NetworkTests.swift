@@ -2,7 +2,7 @@
 //  NetworkTests.swift
 //  SwiftUI_OpenMarketTests
 //
-//  Created by 김도연 on 2022/09/05.
+//  Created by dudu on 2022/09/05.
 //
 
 import XCTest
