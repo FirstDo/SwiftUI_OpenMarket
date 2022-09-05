@@ -29,6 +29,7 @@
 		942458B428C5FE0200B235A8 /* ProductRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458B328C5FE0200B235A8 /* ProductRepositoryTests.swift */; };
 		942458B728C5FF5B00B235A8 /* Dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458B628C5FF5B00B235A8 /* Dummy.swift */; };
 		942458BA28C6008F00B235A8 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458B928C6008F00B235A8 /* MockNetworkService.swift */; };
+		942458C228C6509100B235A8 /* Formatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458C128C6509100B235A8 /* Formatter+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		942458B328C5FE0200B235A8 /* ProductRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRepositoryTests.swift; sourceTree = "<group>"; };
 		942458B628C5FF5B00B235A8 /* Dummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dummy.swift; sourceTree = "<group>"; };
 		942458B928C6008F00B235A8 /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
+		942458C128C6509100B235A8 /* Formatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Formatter+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				9424586C28C5BB9300B235A8 /* SwiftUI_OpenMarketApp.swift */,
+				942458BF28C6507200B235A8 /* Utils */,
 				9424588F28C5C3E700B235A8 /* Network */,
 				9424587C28C5BE6F00B235A8 /* Data */,
 				9424587A28C5BE6100B235A8 /* Domain */,
@@ -244,6 +247,22 @@
 			path = Dummy_Mock;
 			sourceTree = "<group>";
 		};
+		942458BF28C6507200B235A8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				942458C028C6508700B235A8 /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		942458C028C6508700B235A8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				942458C128C6509100B235A8 /* Formatter+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -357,6 +376,7 @@
 				9424589928C5CA2A00B235A8 /* NetworkError.swift in Sources */,
 				9424588128C5BFD800B235A8 /* ProductImageDTO.swift in Sources */,
 				9424589B28C5CAB600B235A8 /* NetworkService.swift in Sources */,
+				942458C228C6509100B235A8 /* Formatter+.swift in Sources */,
 				9424588928C5C16600B235A8 /* Product.swift in Sources */,
 				942458B128C5F7CA00B235A8 /* ProductRepository.swift in Sources */,
 			);
