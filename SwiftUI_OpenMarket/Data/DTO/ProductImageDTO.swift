@@ -20,3 +20,15 @@ struct ProductImageDTO: Codable {
     case issuedAt = "issued_at"
   }
 }
+
+extension ProductImageDTO {
+  func toEntity() -> ProductImage {
+    return ProductImage(
+      id: id,
+      url: url,
+      thumbnailURL: thumbnailURL,
+      succeed: succeed,
+      issuedAt: issuedAt
+    )
+  }
+}
