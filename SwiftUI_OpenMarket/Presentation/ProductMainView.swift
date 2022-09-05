@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct ProductMainView: View {
-    var body: some View {
-        Text("Hello, world!")
-            .padding()
-    }
+  var body: some View {
+    Text("Hello, world!")
+      .padding()
+  }
 }
 
 struct ProductMainView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductMainView()
-    }
+  static var previews: some View {
+    ProductMainView()
+  }
 }
