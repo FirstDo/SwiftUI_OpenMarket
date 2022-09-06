@@ -29,8 +29,6 @@ final class PromotionViewModel: ObservableObject {
     UIApplication.shared.open(url)
   }
   
-  // MARK: - Output
-  
   func requestProduct(_ number: Int) {
     productRepository.requestProducts(page: 1, itemPerPage: number)
       .receive(on: DispatchQueue.main)
@@ -41,4 +39,9 @@ final class PromotionViewModel: ObservableObject {
       }
       .store(in: &cancellables)
   }
+  
+  // MARK: - Output
+  
+  @Published var isActive: Bool = false
+  @Published var selectedProduct: Product = Product.preview
 }

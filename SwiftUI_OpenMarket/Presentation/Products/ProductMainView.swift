@@ -14,6 +14,11 @@ struct ProductMainView: View {
   var body: some View {
     ScrollView {
       productListView
+      NavigationLink(
+        destination: viewFactory.productDetailView(with: viewModel.selectedProduct),
+        isActive: $viewModel.isActive,
+        label: { EmptyView() }
+      )
     }
     .onAppear {
       viewModel.request(0)
@@ -29,6 +34,10 @@ extension ProductMainView {
       ForEach(Array(viewModel.items.enumerated()), id: \.element.id) { (index, product) in
         viewFactory.productView(with: product)
           .frame(height: 150, alignment: .center)
+          .onTapGesture {
+            viewModel.selectedProduct = product
+            viewModel.isActive = true
+          }
           .onAppear {
             viewModel.request(index)
           }
