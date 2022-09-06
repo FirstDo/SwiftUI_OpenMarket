@@ -1,0 +1,105 @@
+//
+//  ProductDetailView.swift
+//  SwiftUI_OpenMarket
+//
+//  Created by dudu on 2022/09/06.
+//
+
+import SwiftUI
+
+struct ProductDetailView: View {
+  @EnvironmentObject var viewFactory: ViewFactory
+  @ObservedObject var viewModel: ProductDetailViewModel
+  
+  var body: some View {
+    VStack(spacing: 16) {
+      ScrollView {
+        VStack(alignment: .leading, spacing: 10) {
+          productImagePageView
+          profileView
+          
+          Divider()
+          
+          Text(viewModel.name)
+            .font(.title2)
+            .fontWeight(.bold)
+          Text(viewModel.description)
+            .lineLimit(nil)
+        }
+        .padding()
+      }
+      
+      footerView
+    }
+    .onAppear {
+      viewModel.requestProduct()
+    }
+  }
+}
+
+extension ProductDetailView {
+  var productImagePageView: some View {
+    TabView {
+      ForEach(Array(viewModel.images.enumerated()), id: \.offset) { index, image in
+        Image(uiImage: image)
+          .resizable()
+          .aspectRatio(1.0, contentMode: .fit)
+          .cornerRadius(20)
+      }
+    }
+    .tabViewStyle(.page(indexDisplayMode: .always))
+    .frame(
+      width: UIScreen.main.bounds.size.width - 30,
+      height: UIScreen.main.bounds.size.width - 30
+    )
+  }
+  
+  var profileView: some View {
+    HStack(spacing: 16) {
+      Image(systemName: "person.circle")
+        .resizable()
+        .aspectRatio(1.0, contentMode: .fit)
+        .foregroundColor(.gray)
+      Text(viewModel.venderName)
+        .font(.title3)
+        .fontWeight(.semibold)
+      Spacer()
+    }
+    .frame(height: 50)
+  }
+  
+  var footerView: some View {
+    HStack(spacing: 16) {
+      Image(systemName: "star")
+      Divider()
+      
+      VStack {
+        if viewModel.isSale {
+          Text(viewModel.price)
+            .font(.callout)
+            .foregroundColor(.gray)
+            .strikethrough()
+        }
+        
+        Text(viewModel.bargainPrice)
+          .foregroundColor(.red)
+          .bold()
+      }
+      
+      Spacer()
+      
+      Text(viewModel.stock)
+    }
+    .frame(height: 50)
+    .padding()
+  }
+}
+
+struct ProductDetailView_Previews: PreviewProvider {
+  static var previews: some View {
+    NavigationView {
+      ViewFactory.preview.productDetailView(with: Product.preview)
+        .environmentObject(ViewFactory.preview)
+    }
+  }
+}

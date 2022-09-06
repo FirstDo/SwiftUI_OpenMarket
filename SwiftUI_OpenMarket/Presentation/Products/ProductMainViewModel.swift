@@ -40,4 +40,6 @@ final class ProductMainViewModel: ObservableObject {
   // MARK: - OutPut
   
   @Published var items: [Product] = []
+  @Published var isActive: Bool = false
+  @Published var selectedProduct: Product = Product.preview
 }

@@ -14,6 +14,8 @@ final class ViewFactory: ObservableObject {
     self.container = container
   }
   
+  // MARK: - Promotion
+  
   func promotionView() -> PromotionView {
     let viewModel = PromotionViewModel(productRepository: container.productRepository)
     return PromotionView(viewModel: viewModel)
@@ -24,6 +26,8 @@ final class ViewFactory: ObservableObject {
     return ProductGridView(viewModel: viewModel)
   }
   
+  // MARK: ProductMain
+  
   func productView(with product: Product) -> ProductView {
     let viewModel = ProductViewModel(product: product, imageDownloader: container.imageDownloder)
     return ProductView(viewModel: viewModel)
@@ -32,6 +36,17 @@ final class ViewFactory: ObservableObject {
   func productMainView() -> ProductMainView {
     let viewModel = ProductMainViewModel(productRepository: container.productRepository)
     return ProductMainView(viewModel: viewModel)
+  }
+  
+  // MARK: ProductDetail
+  
+  func productDetailView(with product: Product) -> ProductDetailView {
+    let viewModel = ProductDetailViewModel(
+      product: product,
+      imageDownloader: container.imageDownloder,
+      productRepository: container.productRepository
+    )
+    return ProductDetailView(viewModel: viewModel)
   }
 }
 

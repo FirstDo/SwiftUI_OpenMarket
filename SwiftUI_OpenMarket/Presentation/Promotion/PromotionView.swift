@@ -20,6 +20,12 @@ struct PromotionView: View {
       } header: {
         hotItemsHeaderView
       }
+      
+      NavigationLink(
+        destination: viewFactory.productDetailView(with: viewModel.selectedProduct),
+        isActive: $viewModel.isActive,
+        label: { EmptyView() }
+      )
     }
     .padding()
     .navigationTitle("🎁 행사중")
@@ -71,6 +77,10 @@ extension PromotionView {
       LazyHGrid(rows: gridItems) {
         ForEach(viewModel.products) { product in
           viewFactory.productGridView(with: product)
+            .onTapGesture {
+              viewModel.selectedProduct = product
+              viewModel.isActive = true
+            }
         }
       }
     }
