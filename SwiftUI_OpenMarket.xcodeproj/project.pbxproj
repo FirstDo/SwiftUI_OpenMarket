@@ -45,6 +45,7 @@
 		942458EB28C6B1C100B235A8 /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942458EA28C6B1C100B235A8 /* ProductDetailViewModel.swift */; };
 		946F2C5428C74F0D00A7AB57 /* ProductCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5328C74F0D00A7AB57 /* ProductCreateViewModel.swift */; };
 		946F2C5628C74F2E00A7AB57 /* ProductCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5528C74F2E00A7AB57 /* ProductCreateView.swift */; };
+		946F2C5928C78B0100A7AB57 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5828C78B0100A7AB57 /* PhotoPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		942458EA28C6B1C100B235A8 /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
 		946F2C5328C74F0D00A7AB57 /* ProductCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCreateViewModel.swift; sourceTree = "<group>"; };
 		946F2C5528C74F2E00A7AB57 /* ProductCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCreateView.swift; sourceTree = "<group>"; };
+		946F2C5828C78B0100A7AB57 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -384,8 +386,17 @@
 			children = (
 				946F2C5328C74F0D00A7AB57 /* ProductCreateViewModel.swift */,
 				946F2C5528C74F2E00A7AB57 /* ProductCreateView.swift */,
+				946F2C5728C78AF200A7AB57 /* Components */,
 			);
 			path = ProductCreate;
+			sourceTree = "<group>";
+		};
+		946F2C5728C78AF200A7AB57 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				946F2C5828C78B0100A7AB57 /* PhotoPickerView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -508,6 +519,7 @@
 				9424586D28C5BB9300B235A8 /* SwiftUI_OpenMarketApp.swift in Sources */,
 				942458D328C66F0A00B235A8 /* DIContainer.swift in Sources */,
 				946F2C5428C74F0D00A7AB57 /* ProductCreateViewModel.swift in Sources */,
+				946F2C5928C78B0100A7AB57 /* PhotoPickerView.swift in Sources */,
 				942458C928C65E6500B235A8 /* ImageCacheManager.swift in Sources */,
 				9424589928C5CA2A00B235A8 /* NetworkError.swift in Sources */,
 				9424588128C5BFD800B235A8 /* ProductImageDTO.swift in Sources */,
