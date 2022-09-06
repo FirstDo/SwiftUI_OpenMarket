@@ -12,8 +12,13 @@ struct ProductMainView: View {
   @ObservedObject var viewModel: ProductMainViewModel
   
   var body: some View {
-    ScrollView {
-      productListView
+    ZStack(alignment: .bottomTrailing) {
+      ScrollView {
+        productListView
+      }
+      
+      addProductButton
+      
       NavigationLink(
         destination: viewFactory.productDetailView(with: viewModel.selectedProduct),
         isActive: $viewModel.isActive,
@@ -45,6 +50,20 @@ extension ProductMainView {
           .background(.gray)
       }
     }
+  }
+  
+  private var addProductButton: some View {
+    Button {
+      
+    } label: {
+      Image(systemName: "plus.circle.fill")
+        .resizable()
+        .background(.white)
+        .frame(width: 50, height: 50)
+        .cornerRadius(25)
+        .tint(.orange)
+    }
+    .padding()
   }
 }
 
