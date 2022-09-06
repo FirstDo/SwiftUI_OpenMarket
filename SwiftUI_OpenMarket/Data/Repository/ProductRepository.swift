@@ -21,7 +21,7 @@ final class DefaultProductRepository: ProductRepository {
   }
   
   func requestProduct(id: Int) -> AnyPublisher<Product, NetworkError> {
-    let endPoint = RequestProduct(path: "\(id)")
+    let endPoint = RequestProduct(path: "/\(id)")
     
     return networkService.request(endPoint: endPoint)
       .decode(type: ProductDTO.self, decoder: JSONDecoder())
