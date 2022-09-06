@@ -8,5 +8,9 @@
 import Foundation
 
 final class ProductCreateViewModel: ObservableObject {
+  private let productRepository: ProductRepository
   
+  init(productRepository: ProductRepository) {
+    self.productRepository = productRepository
+  }
 }

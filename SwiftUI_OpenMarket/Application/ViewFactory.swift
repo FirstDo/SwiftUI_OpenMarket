@@ -48,6 +48,13 @@ final class ViewFactory: ObservableObject {
     )
     return ProductDetailView(viewModel: viewModel)
   }
+  
+  // MARK: ProductCreate
+  
+  func productCreateView() -> ProductCreateView {
+    let viewModel = ProductCreateViewModel(productRepository: container.productRepository)
+    return ProductCreateView(viewModel: viewModel)
+  }
 }
 
 extension ViewFactory {
