@@ -29,6 +29,15 @@ final class ProductMainViewModel: ObservableObject {
   }
 
   // MARK: - Input
+  
+  func productItemDidTap(_ product: Product) {
+    selectedProduct = product
+    showProductDetailView = true
+  }
+  
+  func addProductButtonDidTap() {
+    showRegisterView = true
+  }
 
   func request(_ row: Int) {
     if (row + 10) / 20 + 1 == page {
@@ -40,6 +49,10 @@ final class ProductMainViewModel: ObservableObject {
   // MARK: - OutPut
   
   @Published var items: [Product] = []
-  @Published var isActive: Bool = false
-  @Published var selectedProduct: Product = Product.preview
+
+  // MARK: - Routing
+  
+  @Published var showRegisterView = false
+  @Published var showProductDetailView = false
+  @Published var selectedProduct = Product.preview
 }

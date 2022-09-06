@@ -21,7 +21,7 @@ struct ProductMainView: View {
       
       NavigationLink(
         destination: viewFactory.productDetailView(with: viewModel.selectedProduct),
-        isActive: $viewModel.isActive,
+        isActive: $viewModel.showRegisterView,
         label: { EmptyView() }
       )
     }
@@ -40,8 +40,7 @@ extension ProductMainView {
         viewFactory.productView(with: product)
           .frame(height: 150, alignment: .center)
           .onTapGesture {
-            viewModel.selectedProduct = product
-            viewModel.isActive = true
+            viewModel.productItemDidTap(product)
           }
           .onAppear {
             viewModel.request(index)
@@ -54,7 +53,7 @@ extension ProductMainView {
   
   private var addProductButton: some View {
     Button {
-      
+      viewModel.addProductButtonDidTap()
     } label: {
       Image(systemName: "plus.circle.fill")
         .resizable()
@@ -63,6 +62,12 @@ extension ProductMainView {
         .cornerRadius(25)
         .tint(.orange)
     }
+    .fullScreenCover(isPresented: $viewModel.showRegisterView) {
+      NavigationView {
+        viewFactory.productCreateView()
+      }
+    }
+
     .padding()
   }
 }
