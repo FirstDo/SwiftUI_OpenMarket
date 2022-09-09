@@ -10,7 +10,6 @@ import Foundation
 struct ProductRequestDTO: Encodable {
   var name: String?
   var description: String?
-  var thumbnailId: Int?
   var price: Double?
   var currency: String?
   var discountedPrice: Double?
@@ -20,7 +19,6 @@ struct ProductRequestDTO: Encodable {
   private enum CodingKeys: String, CodingKey {
     case name, price, currency, stock
     case description = "descriptions"
-    case thumbnailId = "thumbnail_id"
     case discountedPrice = "discounted_price"
     case vendorSecretKey = "secret"
   }
