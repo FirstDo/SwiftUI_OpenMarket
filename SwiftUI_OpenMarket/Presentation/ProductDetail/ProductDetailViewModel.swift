@@ -8,19 +8,29 @@
 import UIKit
 import Combine
 
+typealias AlertComponent = (title: String, message: String?)
+
 final class ProductDetailViewModel: ObservableObject {
   @Published private var product: Product
   private let imageDownloader: ImageDownloader
   private let productRepository: ProductRepository
   private let starStorage: FavoriteItemStorage
+  private let updateTrigger: () -> Void
   
-  private var cancellable = Set<AnyCancellable>()
+  private var cancellables = Set<AnyCancellable>()
   
-  init(product: Product, imageDownloader: ImageDownloader, productRepository: ProductRepository, starStorage: FavoriteItemStorage) {
+  init(
+    product: Product,
+    imageDownloader: ImageDownloader,
+    productRepository: ProductRepository,
+    starStorage: FavoriteItemStorage,
+    updateTrigger: @escaping () -> Void
+  ) {
     self.product = product
     self.imageDownloader = imageDownloader
     self.productRepository = productRepository
     self.starStorage = starStorage
+    self.updateTrigger = updateTrigger
     self.isLike = starStorage.getObject(id: product.id)
   }
   
@@ -63,18 +73,54 @@ final class ProductDetailViewModel: ObservableObject {
     return Formatter.number.string(for: number) ?? "0"
   }
   
+  private func deleteProductRequest(password: String) {
+    productRepository.deleteProduct(id: self.product.id, deleteSecret: password)
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] compeltion in
+        // MARK: TODO - ShowErrorAlert
+        switch compeltion {
+        case .finished:
+          break
+        case .failure(let error):
+          self?.setAlertComponent(title: "네트워크 에러", message: error.localizedDescription)
+        }
+      } receiveValue: { [weak self] _ in
+        self?.setAlertComponent(title: "삭제 완료", message: "마켓에서 물건이 삭제되었어요 :)")
+      }
+      .store(in: &cancellables)
+  }
+  
+  private func setAlertComponent(title: String, message: String) {
+    alert.title = title
+    alert.message = message
+    showAlert = true
+  }
+  
   // MARK: - Input
   
   func deleteButtonDidTap() {
-    
+    productRepository.requestPassword(id: self.product.id, secret: UserInformation.password)
+      .receive(on: DispatchQueue.main)
+      .sink { [weak self] completion in
+        switch completion {
+        case .finished:
+          break
+        case .failure(let error):
+          self?.setAlertComponent(title: "네트워크 에러", message: error.localizedDescription)
+        }
+      } receiveValue: { [weak self] text in
+        self?.deleteProductRequest(password: text)
+      }
+      .store(in: &cancellables)
+  }
+  
+  func deleteSuccessButtonDidTap() {
+    self.dismissView = true
+    self.updateTrigger()
   }
   
   func editButtonDidTap() {
     
-  }
-  
-  func moreButtonDidTap() {
-    self.showActionSheet = true
   }
   
   func requestProduct() {
@@ -92,7 +138,7 @@ final class ProductDetailViewModel: ObservableObject {
           await self.downloadImage(imageURL: images.map { $0.url })
         }
       }
-      .store(in: &cancellable)
+      .store(in: &cancellables)
   }
   
   func starImageDidTap() {
@@ -139,5 +185,7 @@ final class ProductDetailViewModel: ObservableObject {
   
   // MARK: - Routing
   
-  @Published var showActionSheet: Bool = false
+  @Published var showAlert: Bool = false
+  @Published var dismissView: Bool = false
+  var alert: AlertComponent = (title: "", message: "")
 }

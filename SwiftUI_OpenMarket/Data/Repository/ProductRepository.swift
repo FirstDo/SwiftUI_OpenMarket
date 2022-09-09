@@ -11,7 +11,9 @@ import Foundation
 protocol ProductRepository {
   func requestProduct(id: Int) -> AnyPublisher<Product, NetworkError>
   func requestProducts(page: Int, itemPerPage: Int) -> AnyPublisher<[Product], NetworkError>
+  func requestPassword(id: Int, secret: String) -> AnyPublisher<String, Error>
   func postProduct(product: Product, imageDatas: [Data]) -> AnyPublisher<Void, NetworkError>
+  func deleteProduct(id: Int, deleteSecret: String) -> AnyPublisher<Void, Error>
 }
 
 final class DefaultProductRepository: ProductRepository {
@@ -56,6 +58,20 @@ final class DefaultProductRepository: ProductRepository {
       .eraseToAnyPublisher()
   }
   
+  func requestPassword(id: Int, secret: String) -> AnyPublisher<String, Error> {
+    let endPoint = RequestPassword(path: "/\(id)/secret", bodyParameters: ["secret": secret])
+    
+    return networkService.request(endPoint: endPoint)
+      .tryMap { data in
+        guard let text = String(data: data, encoding: .utf8) else {
+          throw NetworkError.BadData
+        }
+        
+        return text
+      }
+      .eraseToAnyPublisher()
+  }
+  
   func postProduct(product: Product, imageDatas: [Data]) -> AnyPublisher<Void, NetworkError> {
     let endPoint = PostProduct()
     return networkService.requestMultiPartForm(endPoint: endPoint, product: product, datas: imageDatas)
@@ -67,6 +83,16 @@ final class DefaultProductRepository: ProductRepository {
         }
 
         return error
+      }
+      .eraseToAnyPublisher()
+  }
+  
+  func deleteProduct(id: Int, deleteSecret: String) -> AnyPublisher<Void, Error> {
+    let endPoint = DeleteProduct(path: "/\(id)/\(deleteSecret)")
+    return networkService.request(endPoint: endPoint)
+      .map { _ in }
+      .mapError { error in
+        error as Error
       }
       .eraseToAnyPublisher()
   }

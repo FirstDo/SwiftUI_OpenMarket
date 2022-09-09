@@ -48,12 +48,13 @@ final class ViewFactory: ObservableObject {
   
   // MARK: ProductDetail
   
-  func productDetailView(with product: Product) -> ProductDetailView {
+  func productDetailView(with product: Product, updateTrigger: @escaping () -> Void) -> ProductDetailView {
     let viewModel = ProductDetailViewModel(
       product: product,
       imageDownloader: container.imageDownloder,
       productRepository: container.productRepository,
-      starStorage: container.userData.favoriteItemStorage
+      starStorage: container.userData.favoriteItemStorage,
+      updateTrigger: updateTrigger
     )
     return ProductDetailView(viewModel: viewModel)
   }

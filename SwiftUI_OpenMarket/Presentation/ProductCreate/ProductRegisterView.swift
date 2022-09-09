@@ -23,10 +23,10 @@ struct ProductRegisterView: View {
     .sheet(isPresented: $viewModel.showPhotoPickerView) {
       PhotoPickerView(images: $viewModel.images)
     }
-    .alert("에러 발생", isPresented: $viewModel.showAlertView) {
-      Button("확인") {}
+    .alert(viewModel.alert.title, isPresented: $viewModel.showAlert) {
+      Button("확인") { viewModel.alertOKButtonDidTap() }
     } message: {
-      Text(viewModel.errorMessage)
+      Text(viewModel.alert.message ?? "")
     }
     .onChange(of: viewModel.dismissView) { status in
       if status {

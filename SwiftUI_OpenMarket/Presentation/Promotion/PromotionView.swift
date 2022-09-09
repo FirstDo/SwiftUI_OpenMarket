@@ -22,7 +22,10 @@ struct PromotionView: View {
       }
       
       NavigationLink(
-        destination: viewFactory.productDetailView(with: viewModel.selectedProduct),
+        destination: viewFactory.productDetailView(
+          with: viewModel.selectedProduct,
+          updateTrigger: viewModel.refresh
+        ),
         isActive: $viewModel.showProductDetailView,
         label: { EmptyView() }
       )

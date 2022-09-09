@@ -10,6 +10,7 @@ import SwiftUI
 struct ProductDetailView: View {
   @EnvironmentObject var viewFactory: ViewFactory
   @ObservedObject var viewModel: ProductDetailViewModel
+  @Environment(\.dismiss) var dismiss
   
   var body: some View {
     VStack(spacing: 16) {
@@ -24,12 +25,28 @@ struct ProductDetailView: View {
             .font(.title2)
             .fontWeight(.bold)
           Text(viewModel.description)
-            .lineLimit(nil)
         }
         .padding()
       }
       
       footerView
+    }
+    .alert(
+      viewModel.alert.title,
+      isPresented: $viewModel.showAlert,
+      actions: {
+        Button("확인") {
+          viewModel.deleteSuccessButtonDidTap()
+        }
+      },
+      message: {
+        Text(viewModel.alert.message ?? "")
+      }
+    )
+    .onChange(of: viewModel.dismissView) { newValue in
+      if newValue {
+        dismiss()
+      }
     }
     .toolbar {
       ToolbarItem(placement: .navigationBarTrailing) {
@@ -128,7 +145,7 @@ extension ProductDetailView {
 struct ProductDetailView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      ViewFactory.preview.productDetailView(with: Product.preview)
+      ViewFactory.preview.productDetailView(with: Product.preview, updateTrigger: { })
         .environmentObject(ViewFactory.preview)
     }
   }

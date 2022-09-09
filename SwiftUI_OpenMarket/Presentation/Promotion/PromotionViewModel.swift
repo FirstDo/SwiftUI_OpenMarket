@@ -20,6 +20,10 @@ final class PromotionViewModel: ObservableObject {
   
   // MARK: - Input
   
+  func refresh() {
+    self.requestProduct(20)
+  }
+  
   func productItemDidTap(_ product: Product) {
     selectedProduct = product
     showProductDetailView = true

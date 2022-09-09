@@ -21,7 +21,7 @@ final class ProductMainViewModel: ObservableObject {
     productRepository.requestProducts(page: page, itemPerPage: itemPerPage)
       .receive(on: DispatchQueue.main)
       .sink { completion in
-      
+        // empty
       } receiveValue: { [weak self] products in
         self?.items.append(contentsOf: products)
       }

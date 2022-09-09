@@ -390,8 +390,8 @@
 		946F2C5228C74EF400A7AB57 /* ProductCreate */ = {
 			isa = PBXGroup;
 			children = (
-				946F2C5328C74F0D00A7AB57 /* ProductRegisterViewModel.swift */,
 				946F2C5528C74F2E00A7AB57 /* ProductRegisterView.swift */,
+				946F2C5328C74F0D00A7AB57 /* ProductRegisterViewModel.swift */,
 				946F2C5728C78AF200A7AB57 /* Components */,
 			);
 			path = ProductCreate;
