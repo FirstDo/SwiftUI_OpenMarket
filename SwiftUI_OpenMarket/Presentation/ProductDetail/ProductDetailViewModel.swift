@@ -65,6 +65,18 @@ final class ProductDetailViewModel: ObservableObject {
   
   // MARK: - Input
   
+  func deleteButtonDidTap() {
+    
+  }
+  
+  func editButtonDidTap() {
+    
+  }
+  
+  func moreButtonDidTap() {
+    self.showActionSheet = true
+  }
+  
   func requestProduct() {
     productRepository.requestProduct(id: product.id)
       .receive(on: DispatchQueue.main)
@@ -93,6 +105,10 @@ final class ProductDetailViewModel: ObservableObject {
   @Published var isLike: Bool
   @Published var images: [UIImage] = [UIImage(systemName: "swift")!]
   
+  var isOwner: Bool {
+    return product.vendorId == UserInformation.id
+  }
+  
   var name: String {
     return product.name
   }
@@ -120,4 +136,8 @@ final class ProductDetailViewModel: ObservableObject {
   var isSale: Bool {
     return product.discountedPrice != .zero
   }
+  
+  // MARK: - Routing
+  
+  @Published var showActionSheet: Bool = false
 }

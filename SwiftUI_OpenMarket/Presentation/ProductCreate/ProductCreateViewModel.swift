@@ -89,10 +89,8 @@ final class ProductCreateViewModel: ObservableObject {
         case .failure(_):
           self?.errorMessage = "물건등록을 실패했습니다"
           self?.showAlertView = true
-          break
         }
       } receiveValue: { [weak self] _ in
-        // TODO: Success처리
         self?.updateTrigger()
         self?.dismissView = true
       }

@@ -31,6 +31,13 @@ struct ProductDetailView: View {
       
       footerView
     }
+    .toolbar {
+      ToolbarItem(placement: .navigationBarTrailing) {
+        moreButton
+          .disabled(!viewModel.isOwner)
+          .opacity(viewModel.isOwner ? 1.0 : 0.0)
+      }
+    }
     .onAppear {
       viewModel.requestProduct()
     }
@@ -38,6 +45,25 @@ struct ProductDetailView: View {
 }
 
 extension ProductDetailView {
+  var moreButton: some View {
+    Menu {
+      Button(role: .destructive) {
+        viewModel.deleteButtonDidTap()
+      } label: {
+        Label("삭제", systemImage: "trash")
+      }
+
+      Button(role: .cancel) {
+        viewModel.editButtonDidTap()
+      } label: {
+        Label("수정", systemImage: "square.and.pencil")
+      }
+
+    } label: {
+      Image(systemName: "ellipsis.circle")
+    }
+  }
+  
   var productImagePageView: some View {
     TabView {
       ForEach(Array(viewModel.images.enumerated()), id: \.offset) { index, image in
