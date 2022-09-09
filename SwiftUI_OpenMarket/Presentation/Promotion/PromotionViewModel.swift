@@ -10,10 +10,7 @@ import UIKit
 import Combine
 
 final class PromotionViewModel: ObservableObject {
-  let promotions: [Promotion]
-  @Published var products: [Product] = []
   private let productRepository: ProductRepository
-  
   private var cancellables = Set<AnyCancellable>()
   
   init(_ promotions: [Promotion] = Promotion.defaultPromotion, productRepository: ProductRepository) {
@@ -22,6 +19,11 @@ final class PromotionViewModel: ObservableObject {
   }
   
   // MARK: - Input
+  
+  func productItemDidTap(_ product: Product) {
+    selectedProduct = product
+    showProductDetailView = true
+  }
   
   func openURL(to urlString: String) {
     guard let url = URL(string: urlString) else { return }
@@ -42,6 +44,11 @@ final class PromotionViewModel: ObservableObject {
   
   // MARK: - Output
   
-  @Published var isActive: Bool = false
+  let promotions: [Promotion]
+  @Published var products: [Product] = []
+  
+  // MARK: - Routing
+  
+  @Published var showProductDetailView: Bool = false
   @Published var selectedProduct: Product = Product.preview
 }

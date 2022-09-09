@@ -6,14 +6,19 @@
 //
 
 import UIKit
+import Combine
 
 final class ProductViewModel: ObservableObject {
   private let product: Product
   private let imageDownloader: ImageDownloader
+  private let starStorage: FavoriteItemStorage
+  private var cancellabels = Set<AnyCancellable>()
   
-  init(product: Product, imageDownloader: ImageDownloader) {
+  init(product: Product, imageDownloader: ImageDownloader, starStorage: FavoriteItemStorage) {
     self.product = product
     self.imageDownloader = imageDownloader
+    self.starStorage = starStorage
+    self.isLike = starStorage.getObject(id: product.id)
     
     Task {
       await downloadImage(imageURL: product.thumbnail)
@@ -25,6 +30,7 @@ final class ProductViewModel: ObservableObject {
     
     await MainActor.run {
       self.image = image
+      self.isLoading = false
     }
   }
   
@@ -40,13 +46,22 @@ final class ProductViewModel: ObservableObject {
     return Formatter.number.string(for: number) ?? "0"
   }
   
+  // MARK: - Input
+  
+  func starButtonDidTap() {
+    starStorage.toggleStar(product.id)
+    isLike = starStorage.getObject(id: product.id)
+  }
+  
   // MARK: - Output
+  
+  @Published var isLoading: Bool = true
+  @Published var isLike: Bool
+  @Published var image: UIImage = UIImage(systemName: "swift")!
   
   var name: String {
     return product.name
   }
-  
-  @Published var image: UIImage = UIImage(systemName: "swift")!
   
   var price: String {
     return formattedPrice(number: product.price) + currency
@@ -57,9 +72,17 @@ final class ProductViewModel: ObservableObject {
   }
   
   var discountPercentage: String {
-    let percentage = product.discountedPrice / product.price * 100
+    guard product.price != 0 else {
+      return "0%"
+    }
     
-    return "\(Int(percentage))%"
+    let percentage = product.discountedPrice / product.price * 100
+
+    if (0..<1) ~= percentage {
+      return "1%"
+    } else {
+      return "\(Int(percentage))%"
+    }
   }
   
   var stock: String {
@@ -68,9 +91,5 @@ final class ProductViewModel: ObservableObject {
   
   var isSale: Bool {
     return product.discountedPrice != .zero
-  }
-  
-  var isLike: Bool {
-    return true
   }
 }

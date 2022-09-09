@@ -36,7 +36,6 @@ struct ProductDTO: Codable {
 
 extension ProductDTO {
   func toEntity() -> Product {
-    
     return Product(
       id: id,
       vendorId: vendorId,

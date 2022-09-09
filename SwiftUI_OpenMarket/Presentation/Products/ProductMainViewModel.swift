@@ -27,19 +27,42 @@ final class ProductMainViewModel: ObservableObject {
       }
       .store(in: &cancellables)
   }
+  
+  private func resetData() {
+    self.page = 1
+    self.items = []
+  }
 
   // MARK: - Input
+  
+  func refresh() {
+    resetData()
+    request(0)
+  }
+  
+  func productItemDidTap(_ product: Product) {
+    selectedProduct = product
+    showProductDetailView = true
+  }
+  
+  func addProductButtonDidTap() {
+    showRegisterView = true
+  }
 
   func request(_ row: Int) {
     if (row + 10) / 20 + 1 == page {
-      page += 1
       requestProducts(page: page, itemPerPage: 20)
+      page += 1
     }
   }
   
   // MARK: - OutPut
   
   @Published var items: [Product] = []
-  @Published var isActive: Bool = false
-  @Published var selectedProduct: Product = Product.preview
+
+  // MARK: - Routing
+  
+  @Published var showRegisterView = false
+  @Published var showProductDetailView = false
+  @Published var selectedProduct = Product.preview
 }

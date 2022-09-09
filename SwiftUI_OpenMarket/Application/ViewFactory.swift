@@ -22,14 +22,22 @@ final class ViewFactory: ObservableObject {
   }
   
   func productGridView(with product: Product) -> ProductGridView {
-    let viewModel = ProductViewModel(product: product, imageDownloader: container.imageDownloder)
+    let viewModel = ProductViewModel(
+      product: product, imageDownloader:
+        container.imageDownloder,
+      starStorage: container.userData.favoriteItemStorage
+    )
     return ProductGridView(viewModel: viewModel)
   }
   
   // MARK: ProductMain
   
   func productView(with product: Product) -> ProductView {
-    let viewModel = ProductViewModel(product: product, imageDownloader: container.imageDownloder)
+    let viewModel = ProductViewModel(
+      product: product, imageDownloader:
+        container.imageDownloder,
+      starStorage: container.userData.favoriteItemStorage
+    )
     return ProductView(viewModel: viewModel)
   }
   
@@ -44,9 +52,20 @@ final class ViewFactory: ObservableObject {
     let viewModel = ProductDetailViewModel(
       product: product,
       imageDownloader: container.imageDownloder,
-      productRepository: container.productRepository
+      productRepository: container.productRepository,
+      starStorage: container.userData.favoriteItemStorage
     )
     return ProductDetailView(viewModel: viewModel)
+  }
+  
+  // MARK: ProductCreate
+  
+  func productCreateView(_ updateTrigger: @escaping () -> Void) -> ProductCreateView {
+    let viewModel = ProductCreateViewModel(
+      productRepository: container.productRepository,
+      updateTrigger: updateTrigger
+    )
+    return ProductCreateView(viewModel: viewModel)
   }
 }
 
@@ -54,7 +73,8 @@ extension ViewFactory {
   static let preview = ViewFactory(
     container: DIContainer(
       productRepository: DefaultProductRepository(networkService: DefaultNetworkService()),
-      imageDownloder: DefaultImageDownloader(cacheManager: ImageCacheManager())
+      imageDownloder: DefaultImageDownloader(cacheManager: ImageCacheManager()),
+      userData: UserData(favoriteItemStorage: DefaultFavoriteItemStorage())
     )
   )
 }

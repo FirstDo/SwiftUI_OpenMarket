@@ -13,10 +13,19 @@ struct ProductView: View {
   
   var body: some View {
     HStack(spacing: 16) {
-      Image(uiImage: viewModel.image)
-        .resizable()
-        .aspectRatio(1, contentMode: .fit)
-        .cornerRadius(20)
+      if viewModel.isLoading {
+        ProgressView()
+          .frame(width: 100, height: 100)
+          .tint(.white)
+          .background(.gray)
+          .cornerRadius(20)
+      } else {
+        Image(uiImage: viewModel.image)
+          .resizable()
+          .aspectRatio(1, contentMode: .fit)
+          .frame(width: 100, height: 100)
+          .cornerRadius(20)
+      }
       
       informationView
     }
@@ -40,18 +49,23 @@ extension ProductView {
   private var informationView: some View {
     VStack(alignment: .leading, spacing: 4) {
       Text(viewModel.name)
-        .font(.title3)
+        .font(.title2)
+        .lineLimit(2)
       
       if viewModel.isSale {
         discountView
       }
       
       Text(viewModel.bargainPrice)
+        .fontWeight(.bold)
       Spacer()
       HStack {
         Spacer()
         Image(systemName: viewModel.isLike ? "star.fill" : "star")
           .foregroundColor(.yellow)
+          .onTapGesture {
+            viewModel.starButtonDidTap()
+          }
       }
     }
   }

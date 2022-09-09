@@ -10,7 +10,7 @@ import Foundation
 
 protocol NetworkService {
   func request(endPoint: EndPoint) -> AnyPublisher<Data, NetworkError>
-  func requestMultiPartForm(endPoint: EndPoint) -> AnyPublisher<Data, NetworkError>
+  func requestMultiPartForm(endPoint: EndPoint, product: Product, datas: [Data]) -> AnyPublisher<Data, NetworkError>
 }
 
 struct DefaultNetworkService: NetworkService {
@@ -32,8 +32,8 @@ struct DefaultNetworkService: NetworkService {
       .eraseToAnyPublisher()
   }
   
-  func requestMultiPartForm(endPoint: EndPoint) -> AnyPublisher<Data, NetworkError> {
-    guard let request = endPoint.makeMultiPartFormURLRequest() else {
+  func requestMultiPartForm(endPoint: EndPoint, product: Product, datas: [Data]) -> AnyPublisher<Data, NetworkError> {
+    guard let request = endPoint.makeMultiPartFormURLRequest(product: product, imageDatas: datas) else {
       return Fail(error: NetworkError.BadURL)
         .eraseToAnyPublisher()
     }

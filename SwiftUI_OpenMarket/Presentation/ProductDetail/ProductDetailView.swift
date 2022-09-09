@@ -70,7 +70,11 @@ extension ProductDetailView {
   
   var footerView: some View {
     HStack(spacing: 16) {
-      Image(systemName: "star")
+      Image(systemName: viewModel.isLike ? "star.fill" : "star" )
+        .foregroundColor(.yellow)
+        .onTapGesture {
+          viewModel.starImageDidTap()
+        }
       Divider()
       
       VStack {

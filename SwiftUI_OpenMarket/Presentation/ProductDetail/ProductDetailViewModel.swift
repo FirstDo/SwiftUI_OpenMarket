@@ -12,13 +12,16 @@ final class ProductDetailViewModel: ObservableObject {
   @Published private var product: Product
   private let imageDownloader: ImageDownloader
   private let productRepository: ProductRepository
+  private let starStorage: FavoriteItemStorage
   
   private var cancellable = Set<AnyCancellable>()
   
-  init(product: Product, imageDownloader: ImageDownloader, productRepository: ProductRepository) {
+  init(product: Product, imageDownloader: ImageDownloader, productRepository: ProductRepository, starStorage: FavoriteItemStorage) {
+    self.product = product
     self.imageDownloader = imageDownloader
     self.productRepository = productRepository
-    self.product = product
+    self.starStorage = starStorage
+    self.isLike = starStorage.getObject(id: product.id)
   }
   
   private func downloadImage(imageURL urls: [String]) async {
@@ -80,7 +83,15 @@ final class ProductDetailViewModel: ObservableObject {
       .store(in: &cancellable)
   }
   
+  func starImageDidTap() {
+    starStorage.toggleStar(product.id)
+    isLike = starStorage.getObject(id: product.id)
+  }
+  
   // MARK: - Output
+  
+  @Published var isLike: Bool
+  @Published var images: [UIImage] = [UIImage(systemName: "swift")!]
   
   var name: String {
     return product.name
@@ -89,8 +100,6 @@ final class ProductDetailViewModel: ObservableObject {
   var description: String {
     return product.description ?? ""
   }
-  
-  @Published var images: [UIImage] = [UIImage(systemName: "swift")!]
   
   var venderName: String {
     return product.vendor?.name ?? "익명"
@@ -110,9 +119,5 @@ final class ProductDetailViewModel: ObservableObject {
   
   var isSale: Bool {
     return product.discountedPrice != .zero
-  }
-  
-  var isLike: Bool {
-    return true
   }
 }

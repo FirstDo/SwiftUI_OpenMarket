@@ -12,11 +12,16 @@ struct ProductMainView: View {
   @ObservedObject var viewModel: ProductMainViewModel
   
   var body: some View {
-    ScrollView {
-      productListView
+    ZStack(alignment: .bottomTrailing) {
+      ScrollView {
+        productListView
+      }
+      
+      addProductButton
+      
       NavigationLink(
         destination: viewFactory.productDetailView(with: viewModel.selectedProduct),
-        isActive: $viewModel.isActive,
+        isActive: $viewModel.showProductDetailView,
         label: { EmptyView() }
       )
     }
@@ -33,16 +38,34 @@ extension ProductMainView {
     LazyVStack {
       ForEach(Array(viewModel.items.enumerated()), id: \.element.id) { (index, product) in
         viewFactory.productView(with: product)
-          .frame(height: 150, alignment: .center)
+          .frame(height: 130, alignment: .center)
           .onTapGesture {
-            viewModel.selectedProduct = product
-            viewModel.isActive = true
+            viewModel.productItemDidTap(product)
           }
           .onAppear {
             viewModel.request(index)
           }
         Divider()
           .background(.gray)
+      }
+    }
+  }
+  
+  private var addProductButton: some View {
+    Button {
+      viewModel.addProductButtonDidTap()
+    } label: {
+      Image(systemName: "plus.circle.fill")
+        .resizable()
+        .background(.white)
+        .frame(width: 50, height: 50)
+        .cornerRadius(25)
+        .tint(.orange)
+    }
+    .padding()
+    .fullScreenCover(isPresented: $viewModel.showRegisterView) {
+      NavigationView {
+        viewFactory.productCreateView(viewModel.refresh)
       }
     }
   }

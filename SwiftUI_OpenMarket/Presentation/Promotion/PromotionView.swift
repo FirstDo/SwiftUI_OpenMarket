@@ -23,7 +23,7 @@ struct PromotionView: View {
       
       NavigationLink(
         destination: viewFactory.productDetailView(with: viewModel.selectedProduct),
-        isActive: $viewModel.isActive,
+        isActive: $viewModel.showProductDetailView,
         label: { EmptyView() }
       )
     }
@@ -78,8 +78,7 @@ extension PromotionView {
         ForEach(viewModel.products) { product in
           viewFactory.productGridView(with: product)
             .onTapGesture {
-              viewModel.selectedProduct = product
-              viewModel.isActive = true
+              viewModel.productItemDidTap(product)
             }
         }
       }
