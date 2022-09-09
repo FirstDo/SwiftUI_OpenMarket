@@ -47,8 +47,39 @@ extension EndPoint {
     return request
   }
   
-  func makeMultiPartFormURLRequest() -> URLRequest? {
+  func makeMultiPartFormURLRequest(product: Product, imageDatas: [Data]) -> URLRequest? {
+    guard let url = makeURL() else { return nil }
+    var request = URLRequest(url: url)
+    
+    request.httpMethod = method.rawValue
+    headers.forEach { key, value in
+      request.addValue(value, forHTTPHeaderField: key)
+    }
+    
+    let body = FormDataBuilder
+      .shared(token: UserInformation.boundary)
+      .append(makeFormData(product))
+      .append(makeImageFormDatas(imageDatas))
+      .make()
+    
+    request.httpBody = body
     return nil
+  }
+  
+  private func makeFormData(_ product: Product) -> FormData {
+    let productRequestDTO = product.makeRequestDTO()
+    
+    return FormData(
+      name: "params",
+      type: .json,
+      data: try? JSONEncoder().encode(productRequestDTO)
+    )
+  }
+  
+  private func makeImageFormDatas(_ imageDatas: [Data]) -> [FormData] {
+    return imageDatas.map { data in
+      FormData(name: "images", type: .jpeg, data: data, filename: "images.jpeg")
+    }
   }
 }
 
