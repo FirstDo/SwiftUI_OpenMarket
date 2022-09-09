@@ -21,7 +21,7 @@ struct ProductMainView: View {
       
       NavigationLink(
         destination: viewFactory.productDetailView(with: viewModel.selectedProduct),
-        isActive: $viewModel.showRegisterView,
+        isActive: $viewModel.showProductDetailView,
         label: { EmptyView() }
       )
     }

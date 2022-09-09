@@ -41,8 +41,8 @@ final class ProductMainViewModel: ObservableObject {
 
   func request(_ row: Int) {
     if (row + 10) / 20 + 1 == page {
-      page += 1
       requestProducts(page: page, itemPerPage: 20)
+      page += 1
     }
   }
   
