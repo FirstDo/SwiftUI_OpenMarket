@@ -47,6 +47,7 @@
 		946F2C5628C74F2E00A7AB57 /* ProductCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5528C74F2E00A7AB57 /* ProductCreateView.swift */; };
 		946F2C5928C78B0100A7AB57 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5828C78B0100A7AB57 /* PhotoPickerView.swift */; };
 		94FBBC6A28CB633E006E8A8F /* FormDataBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FBBC6928CB633E006E8A8F /* FormDataBuilder.swift */; };
+		94FBBC6C28CB647A006E8A8F /* ProductRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FBBC6B28CB647A006E8A8F /* ProductRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		946F2C5528C74F2E00A7AB57 /* ProductCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCreateView.swift; sourceTree = "<group>"; };
 		946F2C5828C78B0100A7AB57 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 		94FBBC6928CB633E006E8A8F /* FormDataBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataBuilder.swift; sourceTree = "<group>"; };
+		94FBBC6B28CB647A006E8A8F /* ProductRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 		9424587D28C5BF4C00B235A8 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
+				94FBBC6B28CB647A006E8A8F /* ProductRequest.swift */,
 				9424587E28C5BF8800B235A8 /* ProductDTO.swift */,
 				9424588028C5BFD800B235A8 /* ProductImageDTO.swift */,
 				9424588228C5BFFD00B235A8 /* ProductResponseDTO.swift */,
@@ -535,6 +538,7 @@
 				942458D128C66DCD00B235A8 /* ViewFactory.swift in Sources */,
 				942458E628C6A36800B235A8 /* ProductGridView.swift in Sources */,
 				942458B128C5F7CA00B235A8 /* ProductRepository.swift in Sources */,
+				94FBBC6C28CB647A006E8A8F /* ProductRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

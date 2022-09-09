@@ -41,4 +41,16 @@ extension Product {
     createdAt: "2022-01-18T00:00:00.00",
     issuedAt: "2022-01-18T00:00:00.00"
   )
+  
+  func makeRequestDTO() -> ProductRequestDTO {
+    return ProductRequestDTO(
+      name: self.name,
+      description: self.description,
+      price: self.price,
+      currency: self.currency,
+      discountedPrice: self.discountedPrice,
+      stock: self.stock,
+      vendorSecretKey: UserInformation.password
+    )
+  }
 }
