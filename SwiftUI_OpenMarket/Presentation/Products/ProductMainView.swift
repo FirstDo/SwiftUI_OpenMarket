@@ -62,13 +62,12 @@ extension ProductMainView {
         .cornerRadius(25)
         .tint(.orange)
     }
+    .padding()
     .fullScreenCover(isPresented: $viewModel.showRegisterView) {
       NavigationView {
-        viewFactory.productCreateView()
+        viewFactory.productCreateView(viewModel.refresh)
       }
     }
-
-    .padding()
   }
 }
 

@@ -10,10 +10,12 @@ import Combine
 
 final class ProductCreateViewModel: ObservableObject {
   private let productRepository: ProductRepository
+  private let updateTrigger: () -> Void
   private var cancellables = Set<AnyCancellable>()
   
-  init(productRepository: ProductRepository) {
+  init(productRepository: ProductRepository, updateTrigger: @escaping () -> Void) {
     self.productRepository = productRepository
+    self.updateTrigger = updateTrigger
   }
   
   private var confirmTitle: Bool {
@@ -91,6 +93,7 @@ final class ProductCreateViewModel: ObservableObject {
         }
       } receiveValue: { [weak self] _ in
         // TODO: Success처리
+        self?.updateTrigger()
         self?.dismissView = true
       }
       .store(in: &cancellables)

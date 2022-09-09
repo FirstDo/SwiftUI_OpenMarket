@@ -102,7 +102,7 @@ extension ProductCreateView {
 struct ProductCreateView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      ViewFactory.preview.productCreateView()
+      ViewFactory.preview.productCreateView({})
         .environmentObject(ViewFactory.preview)
     }
   }

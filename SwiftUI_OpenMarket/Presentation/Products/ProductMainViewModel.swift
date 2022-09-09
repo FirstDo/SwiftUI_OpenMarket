@@ -27,8 +27,18 @@ final class ProductMainViewModel: ObservableObject {
       }
       .store(in: &cancellables)
   }
+  
+  private func resetData() {
+    self.page = 1
+    self.items = []
+  }
 
   // MARK: - Input
+  
+  func refresh() {
+    resetData()
+    request(0)
+  }
   
   func productItemDidTap(_ product: Product) {
     selectedProduct = product
