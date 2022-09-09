@@ -8,18 +8,24 @@
 import Foundation
 
 enum NetworkError: LocalizedError {
-  case BadURL
-  case BadStatusCode
-  case BadData
+  case badURL
+  case badStatusCode
+  case badData
+  case badDecoding
+  case unknown
   
   var errorDescription: String? {
     switch self {
-    case .BadURL:
+    case .badURL:
       return "잘못된 URL입니다"
-    case .BadStatusCode:
+    case .badStatusCode:
       return "잘못된 StatusCode 입니다"
-    case .BadData:
+    case .badData:
       return "잘못된 데이터 입니다"
+    case .badDecoding:
+      return "디코딩에 실패했습니다"
+    case .unknown:
+      return "알수없는 에러 입니다"
     }
   }
 }

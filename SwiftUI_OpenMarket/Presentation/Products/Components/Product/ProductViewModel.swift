@@ -26,11 +26,19 @@ final class ProductViewModel: ObservableObject {
   }
   
   private func downloadImage(imageURL url: String) async {
-    guard let image = try? await imageDownloader.download(imageURL: url) else { return }
-    
-    await MainActor.run {
-      self.image = image
-      self.isLoading = false
+    do {
+      let image = try await imageDownloader.download(imageURL: url)
+      
+      await MainActor.run {
+        self.image = image
+        self.isLoading = false
+      }
+      
+    } catch {
+      await MainActor.run {
+        self.image = .placeholder
+        self.isLoading = false
+      }
     }
   }
   

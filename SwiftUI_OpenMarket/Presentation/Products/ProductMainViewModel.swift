@@ -19,10 +19,9 @@ final class ProductMainViewModel: ObservableObject {
   
   private func requestProducts(page: Int, itemPerPage: Int) {
     productRepository.requestProducts(page: page, itemPerPage: itemPerPage)
+      .replaceError(with: [])
       .receive(on: DispatchQueue.main)
-      .sink { completion in
-        // empty
-      } receiveValue: { [weak self] products in
+      .sink { [weak self] products in
         self?.items.append(contentsOf: products)
       }
       .store(in: &cancellables)

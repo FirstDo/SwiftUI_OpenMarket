@@ -48,6 +48,7 @@
 		946F2C5928C78B0100A7AB57 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5828C78B0100A7AB57 /* PhotoPickerView.swift */; };
 		94FBBC6C28CB647A006E8A8F /* ProductRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FBBC6B28CB647A006E8A8F /* ProductRequestDTO.swift */; };
 		94FBBC7528CBA1F7006E8A8F /* FavoriteItemStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FBBC7428CBA1F6006E8A8F /* FavoriteItemStorage.swift */; };
+		94FBBC7828CBEE29006E8A8F /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FBBC7728CBEE29006E8A8F /* UIImage+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,7 @@
 		946F2C5828C78B0100A7AB57 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 		94FBBC6B28CB647A006E8A8F /* ProductRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequestDTO.swift; sourceTree = "<group>"; };
 		94FBBC7428CBA1F6006E8A8F /* FavoriteItemStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteItemStorage.swift; sourceTree = "<group>"; };
+		94FBBC7728CBEE29006E8A8F /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				942458C128C6509100B235A8 /* Formatter+.swift */,
+				94FBBC7728CBEE29006E8A8F /* UIImage+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				942458D328C66F0A00B235A8 /* DIContainer.swift in Sources */,
 				946F2C5428C74F0D00A7AB57 /* ProductRegisterViewModel.swift in Sources */,
 				946F2C5928C78B0100A7AB57 /* PhotoPickerView.swift in Sources */,
+				94FBBC7828CBEE29006E8A8F /* UIImage+.swift in Sources */,
 				942458C928C65E6500B235A8 /* ImageCacheManager.swift in Sources */,
 				9424589928C5CA2A00B235A8 /* NetworkError.swift in Sources */,
 				9424588128C5BFD800B235A8 /* ProductImageDTO.swift in Sources */,

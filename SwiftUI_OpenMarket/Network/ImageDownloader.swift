@@ -24,7 +24,7 @@ final class DefaultImageDownloader: ImageDownloader {
   
   func download(imageURL urlString: String) async throws -> UIImage {
     guard let url = URL(string: urlString) else {
-      throw NetworkError.BadURL
+      throw NetworkError.badURL
     }
     
     if let cachedImage = cacheManager.object(forKey: url) {
@@ -35,11 +35,11 @@ final class DefaultImageDownloader: ImageDownloader {
     
     guard let response = (response as? HTTPURLResponse)?.statusCode,
           (200..<300) ~= response else {
-      throw NetworkError.BadStatusCode
+      throw NetworkError.badStatusCode
     }
     
     guard let image = UIImage(data: data) else {
-      throw NetworkError.BadData
+      throw NetworkError.badData
     }
     
     cacheManager.setObject(image, forKey: url)

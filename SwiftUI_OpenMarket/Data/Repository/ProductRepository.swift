@@ -11,9 +11,9 @@ import Foundation
 protocol ProductRepository {
   func requestProduct(id: Int) -> AnyPublisher<Product, NetworkError>
   func requestProducts(page: Int, itemPerPage: Int) -> AnyPublisher<[Product], NetworkError>
-  func requestPassword(id: Int, secret: String) -> AnyPublisher<String, Error>
+  func requestPassword(id: Int, secret: String) -> AnyPublisher<String, NetworkError>
   func postProduct(product: Product, imageDatas: [Data]) -> AnyPublisher<Void, NetworkError>
-  func deleteProduct(id: Int, deleteSecret: String) -> AnyPublisher<Void, Error>
+  func deleteProduct(id: Int, deleteSecret: String) -> AnyPublisher<Void, NetworkError>
 }
 
 final class DefaultProductRepository: ProductRepository {
@@ -30,11 +30,7 @@ final class DefaultProductRepository: ProductRepository {
       .decode(type: ProductDTO.self, decoder: JSONDecoder())
       .map { $0.toEntity() }
       .mapError { error in
-        guard let error = error as? NetworkError else {
-          return NetworkError.BadData
-        }
-
-        return error
+        error as? NetworkError ?? .badDecoding
       }
       .eraseToAnyPublisher()
   }
@@ -49,25 +45,24 @@ final class DefaultProductRepository: ProductRepository {
         DTOs.map { $0.toEntity() }
       }
       .mapError { error in
-        guard let error = error as? NetworkError else {
-          return NetworkError.BadData
-        }
-
-        return error
+        error as? NetworkError ?? .badDecoding
       }
       .eraseToAnyPublisher()
   }
   
-  func requestPassword(id: Int, secret: String) -> AnyPublisher<String, Error> {
+  func requestPassword(id: Int, secret: String) -> AnyPublisher<String, NetworkError> {
     let endPoint = RequestPassword(path: "/\(id)/secret", bodyParameters: ["secret": secret])
     
     return networkService.request(endPoint: endPoint)
       .tryMap { data in
         guard let text = String(data: data, encoding: .utf8) else {
-          throw NetworkError.BadData
+          throw NetworkError.badDecoding
         }
         
         return text
+      }
+      .mapError { error in
+        error as? NetworkError ?? .badDecoding
       }
       .eraseToAnyPublisher()
   }
@@ -78,22 +73,15 @@ final class DefaultProductRepository: ProductRepository {
       .decode(type: ProductDTO.self, decoder: JSONDecoder())
       .map { _ in }
       .mapError { error in
-        guard let error = error as? NetworkError else {
-          return NetworkError.BadData
-        }
-
-        return error
+        error as? NetworkError ?? .badDecoding
       }
       .eraseToAnyPublisher()
   }
   
-  func deleteProduct(id: Int, deleteSecret: String) -> AnyPublisher<Void, Error> {
+  func deleteProduct(id: Int, deleteSecret: String) -> AnyPublisher<Void, NetworkError> {
     let endPoint = DeleteProduct(path: "/\(id)/\(deleteSecret)")
     return networkService.request(endPoint: endPoint)
       .map { _ in }
-      .mapError { error in
-        error as Error
-      }
       .eraseToAnyPublisher()
   }
 }

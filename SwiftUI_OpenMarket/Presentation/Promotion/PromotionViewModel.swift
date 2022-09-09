@@ -37,10 +37,9 @@ final class PromotionViewModel: ObservableObject {
   
   func requestProduct(_ number: Int) {
     productRepository.requestProducts(page: 1, itemPerPage: number)
+      .replaceError(with: [])
       .receive(on: DispatchQueue.main)
-      .sink { completion in
-        
-      } receiveValue: { [weak self] products in
+      .sink{ [weak self] products in
         self?.products = products
       }
       .store(in: &cancellables)

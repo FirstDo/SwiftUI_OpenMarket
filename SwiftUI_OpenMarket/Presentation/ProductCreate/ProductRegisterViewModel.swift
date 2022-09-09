@@ -73,8 +73,8 @@ final class ProductRegisterViewModel: ObservableObject {
     if confirmInputs {
       productRepository.postProduct(
         product: Product(
-          id: 0,
-          vendorId: 0,
+          id: .zero,
+          vendorId: .zero,
           name: self.title,
           description: self.description,
           thumbnail: "",
