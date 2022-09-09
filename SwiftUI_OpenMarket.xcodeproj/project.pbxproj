@@ -46,6 +46,7 @@
 		946F2C5428C74F0D00A7AB57 /* ProductCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5328C74F0D00A7AB57 /* ProductCreateViewModel.swift */; };
 		946F2C5628C74F2E00A7AB57 /* ProductCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5528C74F2E00A7AB57 /* ProductCreateView.swift */; };
 		946F2C5928C78B0100A7AB57 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5828C78B0100A7AB57 /* PhotoPickerView.swift */; };
+		94FBBC6A28CB633E006E8A8F /* FormDataBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FBBC6928CB633E006E8A8F /* FormDataBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		946F2C5328C74F0D00A7AB57 /* ProductCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCreateViewModel.swift; sourceTree = "<group>"; };
 		946F2C5528C74F2E00A7AB57 /* ProductCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCreateView.swift; sourceTree = "<group>"; };
 		946F2C5828C78B0100A7AB57 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
+		94FBBC6928CB633E006E8A8F /* FormDataBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +237,7 @@
 			children = (
 				9424589328C5C4BD00B235A8 /* EndPoint.swift */,
 				9424589D28C5D10100B235A8 /* APIs.swift */,
+				94FBBC6928CB633E006E8A8F /* FormDataBuilder.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				9424588128C5BFD800B235A8 /* ProductImageDTO.swift in Sources */,
 				9424589B28C5CAB600B235A8 /* NetworkService.swift in Sources */,
 				942458C528C65C6D00B235A8 /* ProductViewModel.swift in Sources */,
+				94FBBC6A28CB633E006E8A8F /* FormDataBuilder.swift in Sources */,
 				942458C228C6509100B235A8 /* Formatter+.swift in Sources */,
 				942458E328C69E2400B235A8 /* Promotion.swift in Sources */,
 				9424588928C5C16600B235A8 /* Product.swift in Sources */,
