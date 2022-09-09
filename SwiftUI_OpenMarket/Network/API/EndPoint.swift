@@ -26,7 +26,7 @@ extension EndPoint {
           URLQueryItem(name: key, value: value)
         }
     }
-  
+    
     return urlComponents?.url
   }
   
@@ -56,29 +56,44 @@ extension EndPoint {
       request.addValue(value, forHTTPHeaderField: key)
     }
     
-    let body = FormDataBuilder
-      .shared(token: UserInformation.boundary)
-      .append(makeFormData(product))
-      .append(makeImageFormDatas(imageDatas))
-      .make()
-    
-    request.httpBody = body
-    return nil
+    request.httpBody = makeMultiPartFormData(product: product, imageDatas: imageDatas)
+    return request
   }
   
-  private func makeFormData(_ product: Product) -> FormData {
-    let productRequestDTO = product.makeRequestDTO()
+  private func makeMultiPartFormData(product: Product, imageDatas: [Data]) -> Data! {
+    let productData = try! JSONEncoder().encode(product.makeRequestDTO())
     
-    return FormData(
-      name: "params",
-      type: .json,
-      data: try? JSONEncoder().encode(productRequestDTO)
-    )
+    var data = Data()
+    let boundary = UserInformation.boundary
+    
+    let newLine = "\r\n"
+    let boundaryPrefix = "--\(boundary)\r\n"
+    let boundarySuffix = "\r\n--\(boundary)--\r\n"
+    
+    data.appendString(boundaryPrefix)
+    data.appendString("Content-Disposition: form-data; name=\"params\"\r\n")
+    data.appendString("Content-Type: application/json\r\n")
+    data.appendString("\r\n")
+    data.append(productData)
+    data.appendString(newLine)
+    
+    imageDatas.forEach { imageData in
+      data.appendString(boundaryPrefix)
+      data.appendString("Content-Disposition: form-data; name=\"images\"; filename=\"\(12345).jpg\"\r\n")
+      data.appendString("Content-Type: image/jpg\r\n\r\n")
+      data.append(imageData)
+      data.appendString(newLine)
+    }
+    data.appendString(boundarySuffix)
+    
+    return data
   }
-  
-  private func makeImageFormDatas(_ imageDatas: [Data]) -> [FormData] {
-    return imageDatas.map { data in
-      FormData(name: "images", type: .jpeg, data: data, filename: "images.jpeg")
+}
+
+private extension Data {
+  mutating func appendString(_ stringValue: String) {
+    if let data = stringValue.data(using: .utf8) {
+      self.append(data)
     }
   }
 }

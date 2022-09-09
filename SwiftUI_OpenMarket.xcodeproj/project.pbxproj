@@ -46,8 +46,7 @@
 		946F2C5428C74F0D00A7AB57 /* ProductCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5328C74F0D00A7AB57 /* ProductCreateViewModel.swift */; };
 		946F2C5628C74F2E00A7AB57 /* ProductCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5528C74F2E00A7AB57 /* ProductCreateView.swift */; };
 		946F2C5928C78B0100A7AB57 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F2C5828C78B0100A7AB57 /* PhotoPickerView.swift */; };
-		94FBBC6A28CB633E006E8A8F /* FormDataBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FBBC6928CB633E006E8A8F /* FormDataBuilder.swift */; };
-		94FBBC6C28CB647A006E8A8F /* ProductRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FBBC6B28CB647A006E8A8F /* ProductRequest.swift */; };
+		94FBBC6C28CB647A006E8A8F /* ProductRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94FBBC6B28CB647A006E8A8F /* ProductRequestDTO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,8 +101,7 @@
 		946F2C5328C74F0D00A7AB57 /* ProductCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCreateViewModel.swift; sourceTree = "<group>"; };
 		946F2C5528C74F2E00A7AB57 /* ProductCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCreateView.swift; sourceTree = "<group>"; };
 		946F2C5828C78B0100A7AB57 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
-		94FBBC6928CB633E006E8A8F /* FormDataBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormDataBuilder.swift; sourceTree = "<group>"; };
-		94FBBC6B28CB647A006E8A8F /* ProductRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequest.swift; sourceTree = "<group>"; };
+		94FBBC6B28CB647A006E8A8F /* ProductRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRequestDTO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,7 +194,7 @@
 		9424587D28C5BF4C00B235A8 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
-				94FBBC6B28CB647A006E8A8F /* ProductRequest.swift */,
+				94FBBC6B28CB647A006E8A8F /* ProductRequestDTO.swift */,
 				9424587E28C5BF8800B235A8 /* ProductDTO.swift */,
 				9424588028C5BFD800B235A8 /* ProductImageDTO.swift */,
 				9424588228C5BFFD00B235A8 /* ProductResponseDTO.swift */,
@@ -240,7 +238,6 @@
 			children = (
 				9424589328C5C4BD00B235A8 /* EndPoint.swift */,
 				9424589D28C5D10100B235A8 /* APIs.swift */,
-				94FBBC6928CB633E006E8A8F /* FormDataBuilder.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -421,6 +418,8 @@
 			dependencies = (
 			);
 			name = SwiftUI_OpenMarket;
+			packageProductDependencies = (
+			);
 			productName = SwiftUI_OpenMarket;
 			productReference = 9424586928C5BB9300B235A8 /* SwiftUI_OpenMarket.app */;
 			productType = "com.apple.product-type.application";
@@ -471,6 +470,8 @@
 				Base,
 			);
 			mainGroup = 9424586028C5BB9300B235A8;
+			packageReferences = (
+			);
 			productRefGroup = 9424586A28C5BB9300B235A8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -531,14 +532,13 @@
 				9424588128C5BFD800B235A8 /* ProductImageDTO.swift in Sources */,
 				9424589B28C5CAB600B235A8 /* NetworkService.swift in Sources */,
 				942458C528C65C6D00B235A8 /* ProductViewModel.swift in Sources */,
-				94FBBC6A28CB633E006E8A8F /* FormDataBuilder.swift in Sources */,
 				942458C228C6509100B235A8 /* Formatter+.swift in Sources */,
 				942458E328C69E2400B235A8 /* Promotion.swift in Sources */,
 				9424588928C5C16600B235A8 /* Product.swift in Sources */,
 				942458D128C66DCD00B235A8 /* ViewFactory.swift in Sources */,
 				942458E628C6A36800B235A8 /* ProductGridView.swift in Sources */,
 				942458B128C5F7CA00B235A8 /* ProductRepository.swift in Sources */,
-				94FBBC6C28CB647A006E8A8F /* ProductRequest.swift in Sources */,
+				94FBBC6C28CB647A006E8A8F /* ProductRequestDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

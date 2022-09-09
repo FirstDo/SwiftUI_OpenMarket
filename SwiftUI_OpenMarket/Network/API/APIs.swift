@@ -37,9 +37,9 @@ struct PostProduct: EndPoint {
   let path: String = ""
   let method: HTTPMethod = .post
   let queryParameters: [String : String]? = nil
-  let bodyParameters: Encodable? = [
-    "Content-Type": "multipart/form-data; boundary=\(UserInformation.boundary)",
-    "identifier": UserInformation.identifier
+  let bodyParameters: Encodable? = nil
+  let headers: [String : String] = [
+      "Content-Type": "multipart/form-data; boundary=\(UserInformation.boundary)",
+      "identifier": UserInformation.identifier
   ]
-  let headers: [String : String]
 }

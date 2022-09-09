@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Combine
 
 final class ProductCreateViewModel: ObservableObject {
   private let productRepository: ProductRepository
+  private var cancellables = Set<AnyCancellable>()
   
   init(productRepository: ProductRepository) {
     self.productRepository = productRepository
@@ -61,7 +63,36 @@ final class ProductCreateViewModel: ObservableObject {
   
   func registerButtonDidTap() {
     if confirmInputs {
-      // TODO: register Product
+      productRepository.postProduct(
+        product: Product(
+          id: 0,
+          vendorId: 0,
+          name: self.title,
+          description: self.description,
+          thumbnail: "",
+          currency: "KRW",
+          price: Double(self.price)!,
+          bargainPrice: .zero,
+          discountedPrice: Double(self.discountPrice)!,
+          stock: Int(self.stock)!,
+          createdAt: "",
+          issuedAt: ""
+        ),
+        imageDatas: images.map { $0.jpegData(compressionQuality: 0.1)! }
+      )
+      .sink { completion in
+        switch completion {
+        case .finished:
+          break
+        case .failure(let error):
+          // TODO: Error처리
+          break
+        }
+      } receiveValue: { _ in
+        // TODO: Success처리
+      }
+      .store(in: &cancellables)
+
       dismissView = true
     } else {
       showAlertView = true

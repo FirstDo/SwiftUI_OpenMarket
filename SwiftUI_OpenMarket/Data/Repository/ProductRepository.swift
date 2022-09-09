@@ -11,6 +11,7 @@ import Foundation
 protocol ProductRepository {
   func requestProduct(id: Int) -> AnyPublisher<Product, NetworkError>
   func requestProducts(page: Int, itemPerPage: Int) -> AnyPublisher<[Product], NetworkError>
+  func postProduct(product: Product, imageDatas: [Data]) -> AnyPublisher<Void, NetworkError>
 }
 
 final class DefaultProductRepository: ProductRepository {
@@ -22,7 +23,7 @@ final class DefaultProductRepository: ProductRepository {
   
   func requestProduct(id: Int) -> AnyPublisher<Product, NetworkError> {
     let endPoint = RequestProduct(path: "/\(id)")
-    
+
     return networkService.request(endPoint: endPoint)
       .decode(type: ProductDTO.self, decoder: JSONDecoder())
       .map { $0.toEntity() }
@@ -30,7 +31,7 @@ final class DefaultProductRepository: ProductRepository {
         guard let error = error as? NetworkError else {
           return NetworkError.BadData
         }
-        
+
         return error
       }
       .eraseToAnyPublisher()
@@ -38,7 +39,7 @@ final class DefaultProductRepository: ProductRepository {
   
   func requestProducts(page: Int, itemPerPage: Int) -> AnyPublisher<[Product], NetworkError> {
     let endPoint = RequestProductList(queryParameters: ["page_no": "\(page)", "itmes_per_page": "\(itemPerPage)"])
-    
+
     return networkService.request(endPoint: endPoint)
       .decode(type: ProductResponseDTO.self, decoder: JSONDecoder())
       .map(\.products)
@@ -49,7 +50,29 @@ final class DefaultProductRepository: ProductRepository {
         guard let error = error as? NetworkError else {
           return NetworkError.BadData
         }
-        
+
+        return error
+      }
+      .eraseToAnyPublisher()
+  }
+  
+  func postProduct(product: Product, imageDatas: [Data]) -> AnyPublisher<Void, NetworkError> {
+
+    let endPoint = PostProduct()
+    return networkService.requestMultiPartForm(endPoint: endPoint, product: product, datas: imageDatas)
+      .map { data in
+
+        print(String(data: data, encoding: .utf8))
+
+        return data
+      }
+      .decode(type: ProductDTO.self, decoder: JSONDecoder())
+      .map { _ in }
+      .mapError { error in
+        guard let error = error as? NetworkError else {
+          return NetworkError.BadData
+        }
+
         return error
       }
       .eraseToAnyPublisher()
