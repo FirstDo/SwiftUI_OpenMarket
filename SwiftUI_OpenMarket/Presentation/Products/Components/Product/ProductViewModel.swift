@@ -25,6 +25,7 @@ final class ProductViewModel: ObservableObject {
     
     await MainActor.run {
       self.image = image
+      self.isLoading = false
     }
   }
   
@@ -42,6 +43,7 @@ final class ProductViewModel: ObservableObject {
   
   // MARK: - Output
   
+  @Published var isLoading: Bool = true
   var name: String {
     return product.name
   }
