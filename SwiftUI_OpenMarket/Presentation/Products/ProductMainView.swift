@@ -65,7 +65,7 @@ extension ProductMainView {
     .padding()
     .fullScreenCover(isPresented: $viewModel.showRegisterView) {
       NavigationView {
-        viewFactory.productCreateView(viewModel.refresh)
+        viewFactory.productRegisterView(viewModel.refresh)
       }
     }
   }

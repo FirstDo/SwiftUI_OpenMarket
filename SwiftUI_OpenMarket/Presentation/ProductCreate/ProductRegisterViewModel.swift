@@ -1,5 +1,5 @@
 //
-//  ProductCreateViewModel.swift
+//  ProductRegisterViewModel.swift
 //  SwiftUI_OpenMarket
 //
 //  Created by dudu on 2022/09/06.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class ProductCreateViewModel: ObservableObject {
+final class ProductRegisterViewModel: ObservableObject {
   private let productRepository: ProductRepository
   private let updateTrigger: () -> Void
   private var cancellables = Set<AnyCancellable>()

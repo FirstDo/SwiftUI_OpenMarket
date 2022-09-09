@@ -60,12 +60,12 @@ final class ViewFactory: ObservableObject {
   
   // MARK: ProductCreate
   
-  func productCreateView(_ updateTrigger: @escaping () -> Void) -> ProductCreateView {
-    let viewModel = ProductCreateViewModel(
+  func productRegisterView(_ updateTrigger: @escaping () -> Void) -> ProductRegisterView {
+    let viewModel = ProductRegisterViewModel(
       productRepository: container.productRepository,
       updateTrigger: updateTrigger
     )
-    return ProductCreateView(viewModel: viewModel)
+    return ProductRegisterView(viewModel: viewModel)
   }
 }
 

@@ -1,5 +1,5 @@
 //
-//  ProductCreateView.swift
+//  ProductRegisterView.swift
 //  SwiftUI_OpenMarket
 //
 //  Created by dudu on 2022/09/06.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct ProductCreateView: View {
+struct ProductRegisterView: View {
   @EnvironmentObject var viewFactory: ViewFactory
-  @ObservedObject var viewModel: ProductCreateViewModel
+  @ObservedObject var viewModel: ProductRegisterViewModel
   @Environment(\.dismiss) var dismiss
   
   var body: some View {
@@ -53,7 +53,7 @@ struct ProductCreateView: View {
   }
 }
 
-extension ProductCreateView {
+extension ProductRegisterView {
   private var productImagesView: some View {
     ScrollView(.horizontal, showsIndicators: false) {
       LazyHStack {
@@ -99,10 +99,10 @@ extension ProductCreateView {
   }
 }
 
-struct ProductCreateView_Previews: PreviewProvider {
+struct ProductRegisterView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      ViewFactory.preview.productCreateView({})
+      ViewFactory.preview.productRegisterView({})
         .environmentObject(ViewFactory.preview)
     }
   }
