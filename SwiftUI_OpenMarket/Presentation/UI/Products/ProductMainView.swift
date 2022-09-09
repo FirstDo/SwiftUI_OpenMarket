@@ -28,9 +28,6 @@ struct ProductMainView: View {
         label: { EmptyView() }
       )
     }
-    .onAppear {
-      viewModel.request(0)
-    }
     .navigationTitle("모든 상품")
     .navigationBarTitleDisplayMode(.inline)
   }

@@ -21,10 +21,7 @@ struct ProductView: View {
           .cornerRadius(20)
       } else {
         Image(uiImage: viewModel.image)
-          .resizable()
-          .aspectRatio(1, contentMode: .fit)
-          .frame(width: 100, height: 100)
-          .cornerRadius(20)
+          .cellStyle(size: 100)
       }
       
       informationView

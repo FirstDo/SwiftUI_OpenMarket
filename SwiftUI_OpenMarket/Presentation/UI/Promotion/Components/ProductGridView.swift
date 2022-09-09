@@ -14,9 +14,7 @@ struct ProductGridView: View {
   var body: some View {
     VStack {
       Image(uiImage: viewModel.image)
-        .resizable()
-        .aspectRatio(1, contentMode: .fit)
-        .cornerRadius(20)
+        .cellStyle(size: 100)
         .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 3)
         .padding()
       Text(viewModel.name)

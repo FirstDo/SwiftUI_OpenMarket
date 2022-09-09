@@ -10,3 +10,11 @@ import UIKit
 extension UIImage {
   static var placeholder = UIImage(systemName: "shippingbox.fill")!
 }
+
+//import SwiftUI
+//
+//extension View {
+//  static var width: CGFloat {
+//    return UIScreen.main.bounds.size.width
+//  }
+//}

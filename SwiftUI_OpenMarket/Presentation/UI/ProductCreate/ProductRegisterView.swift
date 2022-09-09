@@ -58,20 +58,14 @@ extension ProductRegisterView {
     ScrollView(.horizontal, showsIndicators: false) {
       LazyHStack {
         Image(systemName: "camera.viewfinder")
-          .resizable()
-          .aspectRatio(1.0, contentMode: .fit)
-          .frame(width: 100, height: 100)
-          .cornerRadius(10)
+          .cellStyle(size: 100, radius: 10)
           .onTapGesture {
             viewModel.cameraImageDidTap()
           }
         
         ForEach(Array(viewModel.images.enumerated()), id: \.offset) { index, image in
           Image(uiImage: image)
-            .resizable()
-            .aspectRatio(1.0, contentMode: .fit)
-            .frame(width: 100, height: 100)
-            .cornerRadius(10)
+            .cellStyle(size: 100, radius: 10)
         }
       }
     }

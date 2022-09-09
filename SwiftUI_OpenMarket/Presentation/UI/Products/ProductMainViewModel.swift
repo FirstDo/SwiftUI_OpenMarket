@@ -15,6 +15,7 @@ final class ProductMainViewModel: ObservableObject {
   
   init(productRepository: ProductRepository) {
     self.productRepository = productRepository
+    refresh()
   }
   
   private func requestProducts(page: Int, itemPerPage: Int) {

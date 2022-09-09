@@ -85,9 +85,7 @@ extension ProductDetailView {
     TabView {
       ForEach(Array(viewModel.images.enumerated()), id: \.offset) { index, image in
         Image(uiImage: image)
-          .resizable()
-          .aspectRatio(1.0, contentMode: .fit)
-          .cornerRadius(20)
+          .cellStyle(size: UIScreen.main.bounds.size.width - 30, radius: 20)
       }
     }
     .tabViewStyle(.page(indexDisplayMode: .always))
