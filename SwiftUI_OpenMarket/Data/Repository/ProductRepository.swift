@@ -57,15 +57,8 @@ final class DefaultProductRepository: ProductRepository {
   }
   
   func postProduct(product: Product, imageDatas: [Data]) -> AnyPublisher<Void, NetworkError> {
-
     let endPoint = PostProduct()
     return networkService.requestMultiPartForm(endPoint: endPoint, product: product, datas: imageDatas)
-      .map { data in
-
-        print(String(data: data, encoding: .utf8))
-
-        return data
-      }
       .decode(type: ProductDTO.self, decoder: JSONDecoder())
       .map { _ in }
       .mapError { error in
