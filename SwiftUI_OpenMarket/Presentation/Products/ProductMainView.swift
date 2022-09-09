@@ -38,7 +38,7 @@ extension ProductMainView {
     LazyVStack {
       ForEach(Array(viewModel.items.enumerated()), id: \.element.id) { (index, product) in
         viewFactory.productView(with: product)
-          .frame(height: 150, alignment: .center)
+          .frame(height: 130, alignment: .center)
           .onTapGesture {
             viewModel.productItemDidTap(product)
           }

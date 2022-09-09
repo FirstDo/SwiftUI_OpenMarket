@@ -49,18 +49,23 @@ extension ProductView {
   private var informationView: some View {
     VStack(alignment: .leading, spacing: 4) {
       Text(viewModel.name)
-        .font(.title3)
+        .font(.title2)
+        .lineLimit(2)
       
       if viewModel.isSale {
         discountView
       }
       
       Text(viewModel.bargainPrice)
+        .fontWeight(.bold)
       Spacer()
       HStack {
         Spacer()
         Image(systemName: viewModel.isLike ? "star.fill" : "star")
           .foregroundColor(.yellow)
+          .onTapGesture {
+            viewModel.starButtonDidTap()
+          }
       }
     }
   }
