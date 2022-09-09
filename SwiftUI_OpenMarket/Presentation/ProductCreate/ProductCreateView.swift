@@ -26,7 +26,7 @@ struct ProductCreateView: View {
     .alert("에러 발생", isPresented: $viewModel.showAlertView) {
       Button("확인") {}
     } message: {
-      Text("잘못된 입력이 있습니다")
+      Text(viewModel.errorMessage)
     }
     .onChange(of: viewModel.dismissView) { status in
       if status {
@@ -81,12 +81,19 @@ extension ProductCreateView {
     VStack {
       TextField("상품명", text: $viewModel.title)
       Divider()
+      
       TextField("￦ 가격", text: $viewModel.price)
+        .keyboardType(.numberPad)
       Divider()
+      
       TextField("할인금액 (가격보다 적어야 합니다)", text: $viewModel.discountPrice)
+        .keyboardType(.numberPad)
       Divider()
+      
       TextField("재고수량", text: $viewModel.stock)
+        .keyboardType(.numberPad)
       Divider()
+      
       TextEditor(text: $viewModel.description)
     }
   }

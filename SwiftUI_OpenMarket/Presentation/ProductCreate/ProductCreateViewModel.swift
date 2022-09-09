@@ -80,20 +80,20 @@ final class ProductCreateViewModel: ObservableObject {
         ),
         imageDatas: images.map { $0.jpegData(compressionQuality: 0.1)! }
       )
-      .sink { completion in
+      .sink { [weak self] completion in
         switch completion {
         case .finished:
           break
-        case .failure(let error):
-          // TODO: Error처리
+        case .failure(_):
+          self?.errorMessage = "물건등록을 실패했습니다"
+          self?.showAlertView = true
           break
         }
-      } receiveValue: { _ in
+      } receiveValue: { [weak self] _ in
         // TODO: Success처리
+        self?.dismissView = true
       }
       .store(in: &cancellables)
-
-      dismissView = true
     } else {
       showAlertView = true
     }
@@ -119,6 +119,7 @@ final class ProductCreateViewModel: ObservableObject {
   // MARK: - Routing
 
   @Published var showPhotoPickerView: Bool = false
-  @Published var showAlertView: Bool = false
   @Published var dismissView: Bool = false
+  @Published var showAlertView: Bool = false
+  var errorMessage: String = ""
 }
