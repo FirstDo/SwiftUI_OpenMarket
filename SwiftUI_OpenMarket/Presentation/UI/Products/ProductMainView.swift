@@ -20,13 +20,13 @@ struct ProductMainView: View {
       addProductButton
       
       NavigationLink(
-        destination: viewFactory.productDetailView(with: viewModel.selectedProduct),
+        destination: viewFactory.productDetailView(
+          with: viewModel.selectedProduct,
+          updateTrigger: viewModel.refresh
+        ),
         isActive: $viewModel.showProductDetailView,
         label: { EmptyView() }
       )
-    }
-    .onAppear {
-      viewModel.request(0)
     }
     .navigationTitle("모든 상품")
     .navigationBarTitleDisplayMode(.inline)
@@ -65,7 +65,7 @@ extension ProductMainView {
     .padding()
     .fullScreenCover(isPresented: $viewModel.showRegisterView) {
       NavigationView {
-        viewFactory.productCreateView(viewModel.refresh)
+        viewFactory.productRegisterView(viewModel.refresh)
       }
     }
   }

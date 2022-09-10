@@ -10,6 +10,7 @@ import SwiftUI
 struct ProductDetailView: View {
   @EnvironmentObject var viewFactory: ViewFactory
   @ObservedObject var viewModel: ProductDetailViewModel
+  @Environment(\.dismiss) var dismiss
   
   var body: some View {
     VStack(spacing: 16) {
@@ -24,12 +25,35 @@ struct ProductDetailView: View {
             .font(.title2)
             .fontWeight(.bold)
           Text(viewModel.description)
-            .lineLimit(nil)
         }
         .padding()
       }
       
       footerView
+    }
+    .alert(
+      viewModel.alert.title,
+      isPresented: $viewModel.showAlert,
+      actions: {
+        Button("확인") {
+          viewModel.deleteSuccessButtonDidTap()
+        }
+      },
+      message: {
+        Text(viewModel.alert.message ?? "")
+      }
+    )
+    .onChange(of: viewModel.dismissView) { newValue in
+      if newValue {
+        dismiss()
+      }
+    }
+    .toolbar {
+      ToolbarItem(placement: .navigationBarTrailing) {
+        moreButton
+          .disabled(!viewModel.isOwner)
+          .opacity(viewModel.isOwner ? 1.0 : 0.0)
+      }
     }
     .onAppear {
       viewModel.requestProduct()
@@ -38,13 +62,30 @@ struct ProductDetailView: View {
 }
 
 extension ProductDetailView {
+  var moreButton: some View {
+    Menu {
+      Button(role: .destructive) {
+        viewModel.deleteButtonDidTap()
+      } label: {
+        Label("삭제", systemImage: "trash")
+      }
+
+      Button(role: .cancel) {
+        viewModel.editButtonDidTap()
+      } label: {
+        Label("수정", systemImage: "square.and.pencil")
+      }
+
+    } label: {
+      Image(systemName: "ellipsis.circle")
+    }
+  }
+  
   var productImagePageView: some View {
     TabView {
       ForEach(Array(viewModel.images.enumerated()), id: \.offset) { index, image in
         Image(uiImage: image)
-          .resizable()
-          .aspectRatio(1.0, contentMode: .fit)
-          .cornerRadius(20)
+          .cellStyle(size: UIScreen.main.bounds.size.width - 30, radius: 20)
       }
     }
     .tabViewStyle(.page(indexDisplayMode: .always))
@@ -102,7 +143,7 @@ extension ProductDetailView {
 struct ProductDetailView_Previews: PreviewProvider {
   static var previews: some View {
     NavigationView {
-      ViewFactory.preview.productDetailView(with: Product.preview)
+      ViewFactory.preview.productDetailView(with: Product.preview, updateTrigger: { })
         .environmentObject(ViewFactory.preview)
     }
   }

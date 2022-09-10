@@ -16,6 +16,8 @@ final class PromotionViewModel: ObservableObject {
   init(_ promotions: [Promotion] = Promotion.defaultPromotion, productRepository: ProductRepository) {
     self.promotions = promotions
     self.productRepository = productRepository
+    
+    requestProduct()
   }
   
   // MARK: - Input
@@ -31,12 +33,11 @@ final class PromotionViewModel: ObservableObject {
     UIApplication.shared.open(url)
   }
   
-  func requestProduct(_ number: Int) {
-    productRepository.requestProducts(page: 1, itemPerPage: number)
+  func requestProduct() {
+    productRepository.requestProducts(page: 1, itemPerPage: 20)
+      .replaceError(with: [])
       .receive(on: DispatchQueue.main)
-      .sink { completion in
-        
-      } receiveValue: { [weak self] products in
+      .sink{ [weak self] products in
         self?.products = products
       }
       .store(in: &cancellables)
@@ -49,6 +50,6 @@ final class PromotionViewModel: ObservableObject {
   
   // MARK: - Routing
   
-  @Published var showProductDetailView: Bool = false
-  @Published var selectedProduct: Product = Product.preview
+  @Published var showProductDetailView = false
+  @Published var selectedProduct = Product.preview
 }

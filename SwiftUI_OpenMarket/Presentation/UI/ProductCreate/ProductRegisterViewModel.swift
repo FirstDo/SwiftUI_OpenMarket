@@ -1,5 +1,5 @@
 //
-//  ProductCreateViewModel.swift
+//  ProductRegisterViewModel.swift
 //  SwiftUI_OpenMarket
 //
 //  Created by dudu on 2022/09/06.
@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-final class ProductCreateViewModel: ObservableObject {
+final class ProductRegisterViewModel: ObservableObject {
   private let productRepository: ProductRepository
   private let updateTrigger: () -> Void
   private var cancellables = Set<AnyCancellable>()
@@ -61,14 +61,20 @@ final class ProductCreateViewModel: ObservableObject {
     return confirmTitle && confirmPrice && confirmDiscountPrice && confirmStock && confirmDescription
   }
   
+  private func setAlertComponent(title: String, message: String?) {
+    self.alert.title = title
+    self.alert.message = message
+    self.showAlert = true
+  }
+  
   // MARK: - Input
   
   func registerButtonDidTap() {
     if confirmInputs {
       productRepository.postProduct(
         product: Product(
-          id: 0,
-          vendorId: 0,
+          id: .zero,
+          vendorId: .zero,
           name: self.title,
           description: self.description,
           thumbnail: "",
@@ -82,24 +88,26 @@ final class ProductCreateViewModel: ObservableObject {
         ),
         imageDatas: images.map { $0.jpegData(compressionQuality: 0.1)! }
       )
+      .receive(on: DispatchQueue.main)
       .sink { [weak self] completion in
         switch completion {
         case .finished:
           break
-        case .failure(_):
-          self?.errorMessage = "물건등록을 실패했습니다"
-          self?.showAlertView = true
-          break
+        case .failure(let error):
+          self?.setAlertComponent(title: "네트워크 에러", message: error.localizedDescription)
         }
       } receiveValue: { [weak self] _ in
-        // TODO: Success처리
-        self?.updateTrigger()
-        self?.dismissView = true
+        self?.setAlertComponent(title: "등록 성공", message: "물건이 마켓에 등록되었어요 :)")
       }
       .store(in: &cancellables)
     } else {
-      showAlertView = true
+      self.setAlertComponent(title: "입력 에러", message: "잘못된 형식이 있습니다 :(")
     }
+  }
+  
+  func alertOKButtonDidTap() {
+    self.updateTrigger()
+    self.dismissView = true
   }
   
   func cameraImageDidTap() {
@@ -123,6 +131,7 @@ final class ProductCreateViewModel: ObservableObject {
 
   @Published var showPhotoPickerView: Bool = false
   @Published var dismissView: Bool = false
-  @Published var showAlertView: Bool = false
-  var errorMessage: String = ""
+  @Published var showAlert: Bool = false
+
+  var alert: AlertComponent = (title: "", message: "")
 }

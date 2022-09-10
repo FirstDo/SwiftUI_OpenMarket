@@ -22,25 +22,38 @@ struct DefaultNetworkService: NetworkService {
   
   func request(endPoint: EndPoint) -> AnyPublisher<Data, NetworkError> {
     guard let request = endPoint.makeURLRequest() else {
-      return Fail(error: NetworkError.BadURL)
+      return Fail(error: NetworkError.badURL)
         .eraseToAnyPublisher()
     }
     
     return session.dataTaskPublisher(for: request)
-      .map(\.data)
-      .mapError { _ in NetworkError.BadStatusCode }
+      .tryMap(dealDataAndResponse)
+      .mapError { error in
+        error as? NetworkError ?? .unknown
+      }
       .eraseToAnyPublisher()
   }
   
   func requestMultiPartForm(endPoint: EndPoint, product: Product, datas: [Data]) -> AnyPublisher<Data, NetworkError> {
     guard let request = endPoint.makeMultiPartFormURLRequest(product: product, imageDatas: datas) else {
-      return Fail(error: NetworkError.BadURL)
+      return Fail(error: NetworkError.badURL)
         .eraseToAnyPublisher()
     }
     
     return session.dataTaskPublisher(for: request)
-      .map(\.data)
-      .mapError { _ in NetworkError.BadStatusCode }
+      .tryMap(dealDataAndResponse)
+      .mapError { error in
+        error as? NetworkError ?? .unknown
+      }
       .eraseToAnyPublisher()
+  }
+  
+  private func dealDataAndResponse(data: Data, response: URLResponse) throws -> Data {
+    guard let statusCode = (response as? HTTPURLResponse)?.statusCode,
+          (200..<300) ~= statusCode else {
+      throw NetworkError.badStatusCode
+    }
+    
+    return data
   }
 }

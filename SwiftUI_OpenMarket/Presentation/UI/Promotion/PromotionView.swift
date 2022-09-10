@@ -22,27 +22,25 @@ struct PromotionView: View {
       }
       
       NavigationLink(
-        destination: viewFactory.productDetailView(with: viewModel.selectedProduct),
+        destination: viewFactory.productDetailView(
+          with: viewModel.selectedProduct,
+          updateTrigger: viewModel.requestProduct
+        ),
         isActive: $viewModel.showProductDetailView,
         label: { EmptyView() }
       )
     }
     .padding()
     .navigationTitle("🎁 행사중")
-    .onAppear {
-      viewModel.requestProduct(10)
-    }
   }
 }
 
 extension PromotionView {
-  var promotionBannerView: some View {
+  private var promotionBannerView: some View {
     TabView {
       ForEach(viewModel.promotions, id: \.name) { promotion in
         Image(promotion.name)
-          .resizable()
-          .aspectRatio(1.0, contentMode: .fit)
-          .cornerRadius(20)
+          .cellStyle(size: UIScreen.main.bounds.size.width - 30)
           .onTapGesture {
             viewModel.openURL(to: promotion.url)
           }
@@ -56,13 +54,15 @@ extension PromotionView {
     .padding()
   }
   
-  var hotItemsHeaderView: some View {
+  private var hotItemsHeaderView: some View {
     HStack {
       Text("🚨 이 상품 놓치지 마세요!")
         .font(.title2)
         .fontWeight(.bold)
         .padding(.leading)
+
       Spacer()
+
       NavigationLink("more ➡️") {
         viewFactory.productMainView()
       }
@@ -70,7 +70,7 @@ extension PromotionView {
     }
   }
   
-  var hotItemsView: some View {
+  private var hotItemsView: some View {
     let gridItems = [GridItem(.flexible(maximum: 200))]
     
     return ScrollView(.horizontal, showsIndicators: false) {

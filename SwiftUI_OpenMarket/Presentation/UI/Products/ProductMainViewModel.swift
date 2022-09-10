@@ -15,14 +15,14 @@ final class ProductMainViewModel: ObservableObject {
   
   init(productRepository: ProductRepository) {
     self.productRepository = productRepository
+    refresh()
   }
   
   private func requestProducts(page: Int, itemPerPage: Int) {
     productRepository.requestProducts(page: page, itemPerPage: itemPerPage)
+      .replaceError(with: [])
       .receive(on: DispatchQueue.main)
-      .sink { completion in
-      
-      } receiveValue: { [weak self] products in
+      .sink { [weak self] products in
         self?.items.append(contentsOf: products)
       }
       .store(in: &cancellables)
