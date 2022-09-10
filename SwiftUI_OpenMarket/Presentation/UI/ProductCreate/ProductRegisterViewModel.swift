@@ -106,8 +106,10 @@ final class ProductRegisterViewModel: ObservableObject {
   }
   
   func alertOKButtonDidTap() {
-    self.updateTrigger()
-    self.dismissView = true
+    if alert.title == "등록 성공" {
+      self.updateTrigger()
+      self.dismissView = true
+    }
   }
   
   func cameraImageDidTap() {

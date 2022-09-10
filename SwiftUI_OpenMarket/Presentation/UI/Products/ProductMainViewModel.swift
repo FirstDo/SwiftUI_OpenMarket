@@ -59,6 +59,15 @@ final class ProductMainViewModel: ObservableObject {
   // MARK: - OutPut
   
   @Published var items: [Product] = []
+  @Published var query = ""
+  
+  var results: [Product] {
+    if query.isEmpty {
+      return items
+    } else {
+      return items.filter { $0.name.contains(query)}
+    }
+  }
 
   // MARK: - Routing
   

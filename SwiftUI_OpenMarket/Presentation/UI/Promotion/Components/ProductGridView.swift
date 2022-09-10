@@ -14,9 +14,9 @@ struct ProductGridView: View {
   var body: some View {
     VStack {
       Image(uiImage: viewModel.image)
-        .cellStyle(size: 100)
-        .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 3)
+        .cellStyle(size: 80)
         .padding()
+        .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 3)
       Text(viewModel.name)
         .fontWeight(.semibold)
     }

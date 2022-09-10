@@ -36,6 +36,7 @@ struct ProductRegisterView: View {
     .toolbar {
       ToolbarItem(placement: .cancellationAction) {
         Image(systemName: "xmark")
+          .foregroundColor(.red)
           .onTapGesture {
             viewModel.closeButtonDidTap()
           }
@@ -43,6 +44,7 @@ struct ProductRegisterView: View {
       
       ToolbarItem(placement: .confirmationAction) {
         Text("완료")
+          .foregroundColor(.orange)
           .onTapGesture {
             viewModel.registerButtonDidTap()
           }
@@ -59,6 +61,7 @@ extension ProductRegisterView {
       LazyHStack {
         Image(systemName: "camera.viewfinder")
           .cellStyle(size: 100, radius: 10)
+          .foregroundColor(.orange.opacity(0.5))
           .onTapGesture {
             viewModel.cameraImageDidTap()
           }
@@ -89,6 +92,7 @@ extension ProductRegisterView {
       Divider()
       
       TextEditor(text: $viewModel.description)
+        .frame(height: 200)
     }
   }
 }
