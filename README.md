@@ -78,7 +78,7 @@ NavigationLink(
 https://user-images.githubusercontent.com/69573768/189488594-fccd510b-8d37-49ca-b437-aae1cd2889eb.MP4
 
 화면이 전환되거나 다시 되돌아 올때, 왜인지는 모르겠는데 View가 Refreshing된다.
-SwiftUI는 @State로 된 프로퍼티가 바뀐다면, View가 업데이트 된느걸로 알고 있는데, 
+SwiftUI는 @State로 된 프로퍼티가 바뀐다면, View가 업데이트 되는걸로 알고 있는데, 
 Routing을 위한 프로퍼티만 변경됬음에도 불구하고 View가 새로고침되는 이슈가 있다
 
 ### UIKit vs SwiftUI
