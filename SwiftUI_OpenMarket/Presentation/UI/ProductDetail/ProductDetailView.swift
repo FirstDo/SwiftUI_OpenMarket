@@ -50,9 +50,7 @@ struct ProductDetailView: View {
     }
     .toolbar {
       ToolbarItem(placement: .navigationBarTrailing) {
-        moreButton
-          .disabled(!viewModel.isOwner)
-          .opacity(viewModel.isOwner ? 1.0 : 0.0)
+        deleteButton
       }
     }
     .onAppear {
@@ -62,26 +60,18 @@ struct ProductDetailView: View {
 }
 
 extension ProductDetailView {
-  var moreButton: some View {
-    Menu {
+  private var deleteButton: some View {
       Button(role: .destructive) {
         viewModel.deleteButtonDidTap()
       } label: {
-        Label("삭제", systemImage: "trash")
+        Label("삭제", systemImage: "trash.circle")
       }
-
-      Button(role: .cancel) {
-        viewModel.editButtonDidTap()
-      } label: {
-        Label("수정", systemImage: "square.and.pencil")
-      }
-
-    } label: {
-      Image(systemName: "ellipsis.circle")
-    }
+      .disabled(!viewModel.isOwner)
+      .opacity(viewModel.isOwner ? 1.0 : 0.0)
+      .foregroundColor(.red)
   }
   
-  var productImagePageView: some View {
+  private var productImagePageView: some View {
     TabView {
       ForEach(Array(viewModel.images.enumerated()), id: \.offset) { index, image in
         Image(uiImage: image)
@@ -95,7 +85,7 @@ extension ProductDetailView {
     )
   }
   
-  var profileView: some View {
+  private var profileView: some View {
     HStack(spacing: 16) {
       Image(systemName: "person.circle")
         .resizable()
@@ -109,7 +99,7 @@ extension ProductDetailView {
     .frame(height: 50)
   }
   
-  var footerView: some View {
+  private var footerView: some View {
     HStack(spacing: 16) {
       Image(systemName: viewModel.isLike ? "star.fill" : "star" )
         .foregroundColor(.yellow)
