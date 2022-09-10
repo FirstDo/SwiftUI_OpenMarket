@@ -13,10 +13,8 @@ struct ProductMainView: View {
   
   var body: some View {
     ZStack(alignment: .bottomTrailing) {
-      ScrollView {
-        productListView
-      }
-      
+      productListView
+        
       addProductButton
       
       NavigationLink(
@@ -35,19 +33,21 @@ struct ProductMainView: View {
 
 extension ProductMainView {
   private var productListView: some View {
-    LazyVStack {
-      ForEach(Array(viewModel.items.enumerated()), id: \.element.id) { (index, product) in
+    List {
+      ForEach(Array(viewModel.results.enumerated()), id: \.element.id) { (index, product) in
         viewFactory.productView(with: product)
-          .frame(height: 130, alignment: .center)
           .onTapGesture {
             viewModel.productItemDidTap(product)
           }
           .onAppear {
             viewModel.request(index)
           }
-        Divider()
-          .background(.gray)
       }
+    }
+    .listStyle(.plain)
+    .searchable(text: $viewModel.query, prompt: "어떤 물건을 찾아볼까요?")
+    .refreshable {
+      viewModel.refresh()
     }
   }
   
