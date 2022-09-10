@@ -22,6 +22,7 @@ struct ProductView: View {
       } else {
         Image(uiImage: viewModel.image)
           .cellStyle(size: 100)
+          .shadow(color: .black.opacity(0.5), radius: 3, x: 3, y: 3)
       }
       
       informationView
@@ -36,6 +37,7 @@ extension ProductView {
       Text(viewModel.discountPercentage)
         .foregroundColor(.red)
         .font(.caption)
+        .fontWeight(.bold)
       Text(viewModel.price)
         .foregroundColor(.gray)
         .font(.caption)
